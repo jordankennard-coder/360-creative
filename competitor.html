@@ -27,8 +27,33 @@
 <section class="hero">
   <div class="eyebrow">Competitor queue</div>
   <h1>Who&rsquo;s in the scan set &mdash; and what they&rsquo;re not claiming</h1>
-  <p class="lede">We run a fresh scan at the start of every round. Territory competitors are actively claiming shapes what we avoid; territory they&rsquo;re leaving open is where the next angle goes.</p>
+  <p class="lede">Parm runs a fresh scan at the start of every round (45&ndash;60 min). Territory competitors are actively claiming shapes what we avoid; territory they&rsquo;re leaving open is where the next angle goes.</p>
 </section>
+
+<div class="scan-controls">
+  <button type="button" class="btn btn-primary" id="btn-start-scan">Start scan &rarr;</button>
+  <div id="queue-summary">Nothing queued for next round.</div>
+  <button type="button" class="btn" id="btn-add-competitor">+ Add competitor</button>
+</div>
+
+<div class="add-form" id="add-form">
+  <h3>Add a competitor</h3>
+  <p style="color: var(--text-muted); font-size: 13.5px; margin-top: -6px;">Fills in below in the &ldquo;Added this session&rdquo; section. Click <strong>Copy HTML for repo</strong> to get the snippet &mdash; Parm/Jordan commits it into <code>competitor.html</code> to persist for the team.</p>
+  <form id="f-add" autocomplete="off">
+    <label for="f-name">Name</label>
+    <input id="f-name" name="name" placeholder="e.g. Waves" required />
+    <label for="f-url">URL (optional)</label>
+    <input id="f-url" name="url" placeholder="e.g. https://waves.com" />
+    <label for="f-products">Product types</label>
+    <input id="f-products" name="products" placeholder="e.g. Plugin subscription (Waves Platinum)" />
+    <label for="f-why">Why add them</label>
+    <input id="f-why" name="why" placeholder="e.g. Mixing-engineer audience; subscription-first plugin catalogue" />
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Add to candidates</button>
+      <button type="button" class="btn btn-ghost" id="btn-cancel-add">Cancel</button>
+    </div>
+  </form>
+</div>
 
 <h2>Current scan set</h2>
 
@@ -38,6 +63,7 @@
       <th>Competitor</th>
       <th>Product types</th>
       <th>Why in set</th>
+      <th class="tick-cell">Next round</th>
     </tr>
   </thead>
   <tbody>
@@ -45,19 +71,24 @@
       <td><strong>Splice</strong><br><a href="https://splice.com" target="_blank" rel="noopener">splice.com &#x2197;</a></td>
       <td>Samples, rent-to-own plugins, Sounds plugin</td>
       <td>Largest creator-first subscription; heavy Meta spend</td>
+      <td class="tick-cell"><button class="tick-btn" data-competitor-id="splice" data-competitor-name="Splice">+ Include in next round</button></td>
     </tr>
     <tr>
       <td><strong>LANDR</strong><br><a href="https://landr.com" target="_blank" rel="noopener">landr.com &#x2197;</a></td>
       <td>Mastering AI, plugins, distribution, AI assistants</td>
       <td>AI-first positioning; directly competing on producer subscription</td>
+      <td class="tick-cell"><button class="tick-btn" data-competitor-id="landr" data-competitor-name="LANDR">+ Include in next round</button></td>
     </tr>
     <tr>
       <td><strong>Output</strong><br><a href="https://output.com" target="_blank" rel="noopener">output.com &#x2197;</a></td>
       <td>Arcade loop sampler, plugins, instruments</td>
       <td>Aspirational creator brand; strong visual identity in ads</td>
+      <td class="tick-cell"><button class="tick-btn" data-competitor-id="output" data-competitor-name="Output">+ Include in next round</button></td>
     </tr>
   </tbody>
 </table>
+
+<p style="font-size: 13.5px; color: var(--text-muted);">The three core competitors are always scanned by default when you click <strong>Start scan</strong>. Tick the box to additionally flag them for manual deep-dive, or untick if you want to skip one this round.</p>
 
 <h2>Round 1 scan (2026-04-21)</h2>
 
@@ -126,33 +157,50 @@
 
 <h2>Candidates to add</h2>
 
-<p>These aren&rsquo;t in the scan set yet but should be added when we re-scope the competitive frame (new audience, new product, or when the current three stop giving us useful signal).</p>
+<p>These aren&rsquo;t in the scan set yet but should be added when we re-scope the competitive frame (new audience, new product, or when the current three stop giving us useful signal). Tick any you want to include in the next scan.</p>
 
 <div class="grid-3">
   <div class="card">
     <h3>Waves</h3>
     <p>Waves Plugins Platinum &mdash; legacy plugin maker&rsquo;s subscription play.</p>
     <p><em>Add if:</em> we start testing Waves-audience positioning, or a mixing-engineer segment.</p>
+    <p><button class="tick-btn" data-competitor-id="waves" data-competitor-name="Waves">+ Include in next round</button></p>
   </div>
   <div class="card">
     <h3>UAD Spark</h3>
     <p>Hardware-adjacent credibility, strong pro-user story, premium positioning.</p>
     <p><em>Add if:</em> we push into the high-end producer/engineer tier.</p>
+    <p><button class="tick-btn" data-competitor-id="uad-spark" data-competitor-name="UAD Spark">+ Include in next round</button></p>
   </div>
   <div class="card">
     <h3>Slate Digital</h3>
     <p>All Access Pass &mdash; mixing-engineer focus, influencer/celebrity-engineer tie-ins.</p>
     <p><em>Add if:</em> we test a mixing-engineer segment head-on.</p>
+    <p><button class="tick-btn" data-competitor-id="slate-digital" data-competitor-name="Slate Digital">+ Include in next round</button></p>
   </div>
 </div>
 
+<div id="added-competitors"></div>
+
 <h2>Watchlist (not yet in set)</h2>
 
-<ul>
-  <li><strong>Baby Audio</strong> &mdash; rising brand, subscription-curious. Watch for their first subscription ad push.</li>
-  <li><strong>Plugin Boutique</strong> &mdash; bundle competitor rather than subscription. Watch if they launch a sub tier.</li>
-  <li><strong>Roland Cloud</strong> &mdash; instrument subscription, adjacent but distinct. Watch for producer-audience overlap campaigns.</li>
-</ul>
+<div class="grid-3">
+  <div class="card">
+    <h3>Baby Audio</h3>
+    <p>Rising brand, subscription-curious. Watch for their first subscription ad push.</p>
+    <p><button class="tick-btn" data-competitor-id="baby-audio" data-competitor-name="Baby Audio">+ Include in next round</button></p>
+  </div>
+  <div class="card">
+    <h3>Plugin Boutique</h3>
+    <p>Bundle competitor rather than subscription. Watch if they launch a sub tier.</p>
+    <p><button class="tick-btn" data-competitor-id="plugin-boutique" data-competitor-name="Plugin Boutique">+ Include in next round</button></p>
+  </div>
+  <div class="card">
+    <h3>Roland Cloud</h3>
+    <p>Instrument subscription, adjacent but distinct. Watch for producer-audience overlap campaigns.</p>
+    <p><button class="tick-btn" data-competitor-id="roland-cloud" data-competitor-name="Roland Cloud">+ Include in next round</button></p>
+  </div>
+</div>
 
 <h2>Scan template (for next round)</h2>
 
@@ -175,16 +223,22 @@ Which gap feeds the new approach that replaces last round's loser?
 
 <h2>Scan process</h2>
 
+<p><strong>Who runs it:</strong> Parm (framework lead). <strong>How it works today:</strong> manual &mdash; pulling the Meta Ad Library for each competitor in the scan set. The <strong>Start scan &rarr;</strong> button at the top opens the Meta Ad Library in new tabs for every competitor in the scan set plus anyone you&rsquo;ve ticked on this page &mdash; that cuts the 10&ndash;15 min of tab-opening admin. The observation work (logging angles, visuals, copy moves) still happens by hand.</p>
+
 <ol>
-  <li>Pull the Meta Ad Library for each competitor in the scan set. Filter to ads active in the last <strong>14 days</strong>.</li>
-  <li>Capture <strong>3&ndash;5 top-running creatives</strong> per competitor &mdash; the ones running for weeks signal spend commitment.</li>
+  <li>Click <strong>Start scan &rarr;</strong> &mdash; a tab opens per competitor, filtered to active ads.</li>
+  <li>For each competitor, capture <strong>3&ndash;5 top-running creatives</strong> &mdash; the ones running for weeks signal spend commitment.</li>
   <li>For each creative, log: format, visual pattern, headline, CTA, price display, UI-vs-lifestyle imagery.</li>
-  <li>Roll findings into the &ldquo;Territory claimed&rdquo; section.</li>
-  <li>The &ldquo;Territory NOT claimed&rdquo; section feeds the next approach brief &mdash; specifically the angle that replaces last round&rsquo;s loser.</li>
+  <li>Roll findings into the &ldquo;Territory claimed&rdquo; section (update <code>competitor.html</code> in the repo).</li>
+  <li>The &ldquo;Territory NOT claimed&rdquo; section feeds the next approach briefs &mdash; specifically the angles that fill slots opened by graduates or retirees.</li>
 </ol>
 
 <div class="callout">
   <strong>Before every round.</strong> The scan happens at round kickoff, not just when a loser is retired. Competitor positions shift faster than our rounds &mdash; if we only scan when we need a new angle, we&rsquo;ll miss when a gap closes.
+</div>
+
+<div class="callout dim">
+  <strong>Automating the scan further.</strong> The Start-scan button opens tabs; the logging is still manual. If we want the full scan summarised by an agent (pulling top creatives, transcribing copy, flagging visual patterns), that&rsquo;s a scheduled-task layer on top &mdash; ping Jordan when you&rsquo;re ready to wire it up.
 </div>
 
 </main>
@@ -192,6 +246,200 @@ Which gap feeds the new approach that replaces last round's loser?
 <footer class="site">
   NI 360 Static Ad Framework &middot; <a href="index.html">Home</a> &middot; <a href="https://docs.google.com/spreadsheets/d/1p_AmG7aTjeJiSifNN6ovVn6mrYgyHlk9WPwjsRECyRQ/edit" target="_blank" rel="noopener">Open tracker &#x2197;</a>
 </footer>
+
+<script>
+(function () {
+  var QKEY = 'ni360-queue-v1';
+  var AKEY = 'ni360-added-v1';
+
+  function getQueue() {
+    try { return JSON.parse(localStorage.getItem(QKEY) || '[]'); }
+    catch (e) { return []; }
+  }
+  function setQueue(ids) {
+    localStorage.setItem(QKEY, JSON.stringify(ids));
+    renderAll();
+  }
+  function toggleQueue(id) {
+    var q = getQueue();
+    var i = q.indexOf(id);
+    if (i >= 0) q.splice(i, 1);
+    else q.push(id);
+    setQueue(q);
+  }
+  function getAdded() {
+    try { return JSON.parse(localStorage.getItem(AKEY) || '[]'); }
+    catch (e) { return []; }
+  }
+  function setAdded(list) {
+    localStorage.setItem(AKEY, JSON.stringify(list));
+    renderAll();
+  }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (m) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+    });
+  }
+  function nameOf(id) {
+    var btn = document.querySelector('[data-competitor-id="' + id + '"]');
+    return btn ? btn.dataset.competitorName : id;
+  }
+
+  function renderTicks() {
+    var q = getQueue();
+    Array.prototype.forEach.call(document.querySelectorAll('.tick-btn'), function (btn) {
+      var id = btn.dataset.competitorId;
+      if (q.indexOf(id) >= 0) {
+        btn.classList.add('ticked');
+        btn.innerHTML = '\u2713 Queued for next round';
+      } else {
+        btn.classList.remove('ticked');
+        btn.textContent = '+ Include in next round';
+      }
+    });
+  }
+
+  function renderSummary() {
+    var el = document.getElementById('queue-summary');
+    if (!el) return;
+    var q = getQueue();
+    if (q.length === 0) {
+      el.innerHTML = 'Nothing queued for next round. The core set (Splice, LANDR, Output) will scan by default.';
+      return;
+    }
+    var names = q.map(nameOf).filter(Boolean);
+    el.innerHTML = '<strong>' + q.length + ' queued</strong> for next round: ' + esc(names.join(', '));
+  }
+
+  function renderAdded() {
+    var container = document.getElementById('added-competitors');
+    if (!container) return;
+    var added = getAdded();
+    if (added.length === 0) {
+      container.innerHTML = '';
+      return;
+    }
+    var html = '<h3 style="margin-top: 32px;">Added this session <span style="color: var(--warn); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; margin-left: 10px;">Local only &mdash; commit to persist</span></h3>';
+    html += '<div class="grid-3">';
+    added.forEach(function (c, i) {
+      var id = 'added-' + i;
+      html += '<div class="card">';
+      html += '<h3>' + esc(c.name) + '</h3>';
+      if (c.url) html += '<p><a href="' + esc(c.url) + '" target="_blank" rel="noopener">' + esc(c.url.replace(/^https?:\/\//, '')) + ' \u2197</a></p>';
+      if (c.products) html += '<p>' + esc(c.products) + '</p>';
+      if (c.why) html += '<p><em>' + esc(c.why) + '</em></p>';
+      html += '<p><button class="tick-btn" data-competitor-id="' + esc(id) + '" data-competitor-name="' + esc(c.name) + '">+ Include in next round</button></p>';
+      html += '<p><button class="btn btn-ghost btn-copy" data-idx="' + i + '" style="font-size: 12px; padding: 6px 10px;">Copy HTML for repo</button> <button class="btn btn-ghost btn-remove" data-idx="' + i + '" style="font-size: 12px; padding: 6px 10px;">Remove</button></p>';
+      html += '</div>';
+    });
+    html += '</div>';
+    container.innerHTML = html;
+    renderTicks();
+  }
+
+  function renderAll() {
+    renderTicks();
+    renderSummary();
+    renderAdded();
+  }
+
+  function startScan() {
+    var q = getQueue();
+    var defaults = ['splice', 'landr', 'output'];
+    var all = defaults.slice();
+    q.forEach(function (id) { if (all.indexOf(id) < 0) all.push(id); });
+    var names = all.map(nameOf);
+    var ok = window.confirm('Open Meta Ad Library for ' + all.length + ' competitors?\n\n' + names.join(', ') + '\n\n(Filtered to active ads. Pop-up blocker may prompt.)');
+    if (!ok) return;
+    all.forEach(function (id) {
+      var name = nameOf(id);
+      var url = 'https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=ALL&q=' + encodeURIComponent(name) + '&search_type=keyword_unordered&media_type=all';
+      window.open(url, '_blank', 'noopener');
+    });
+  }
+
+  function copySnippet(i) {
+    var added = getAdded();
+    var c = added[i];
+    if (!c) return null;
+    var snippet =
+      '  <div class="card">\n' +
+      '    <h3>' + c.name + '</h3>\n' +
+      (c.url ? '    <p><a href="' + c.url + '" target="_blank" rel="noopener">' + c.url.replace(/^https?:\/\//, '') + ' &#x2197;</a></p>\n' : '') +
+      (c.products ? '    <p>' + c.products + '</p>\n' : '') +
+      (c.why ? '    <p><em>Add if:</em> ' + c.why + '</p>\n' : '') +
+      '    <p><button class="tick-btn" data-competitor-id="' + c.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '" data-competitor-name="' + c.name + '">+ Include in next round</button></p>\n' +
+      '  </div>';
+    return snippet;
+  }
+
+  document.addEventListener('click', function (e) {
+    var tick = e.target.closest && e.target.closest('.tick-btn');
+    if (tick) {
+      toggleQueue(tick.dataset.competitorId);
+      return;
+    }
+    if (e.target.id === 'btn-start-scan') { startScan(); return; }
+    if (e.target.id === 'btn-add-competitor') {
+      document.getElementById('add-form').classList.add('open');
+      document.getElementById('f-name').focus();
+      return;
+    }
+    if (e.target.id === 'btn-cancel-add') {
+      document.getElementById('add-form').classList.remove('open');
+      document.getElementById('f-add').reset();
+      return;
+    }
+    if (e.target.classList && e.target.classList.contains('btn-copy')) {
+      var idx = parseInt(e.target.dataset.idx, 10);
+      var snippet = copySnippet(idx);
+      if (!snippet) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(snippet).then(function () {
+          var t = e.target;
+          var orig = t.textContent;
+          t.textContent = '\u2713 Copied';
+          setTimeout(function () { t.textContent = orig; }, 1600);
+        });
+      } else {
+        window.prompt('Copy this HTML and paste it into competitor.html:', snippet);
+      }
+      return;
+    }
+    if (e.target.classList && e.target.classList.contains('btn-remove')) {
+      var idx2 = parseInt(e.target.dataset.idx, 10);
+      var added = getAdded();
+      added.splice(idx2, 1);
+      setAdded(added);
+      return;
+    }
+  });
+
+  document.addEventListener('submit', function (e) {
+    if (e.target.id !== 'f-add') return;
+    e.preventDefault();
+    var fd = new FormData(e.target);
+    var c = {
+      name: String(fd.get('name') || '').trim(),
+      url: String(fd.get('url') || '').trim(),
+      products: String(fd.get('products') || '').trim(),
+      why: String(fd.get('why') || '').trim()
+    };
+    if (!c.name) return;
+    var added = getAdded();
+    added.push(c);
+    setAdded(added);
+    e.target.reset();
+    document.getElementById('add-form').classList.remove('open');
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderAll);
+  } else {
+    renderAll();
+  }
+})();
+</script>
 
 </body>
 </html>

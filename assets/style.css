@@ -294,6 +294,201 @@ td code { font-size: 0.82em; }
   .kpis { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* Buttons (general) */
+.btn {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  line-height: 1.2;
+}
+.btn:hover { background: var(--bg-raised); border-color: var(--accent); }
+.btn-primary {
+  background: var(--accent);
+  color: #15110a;
+  border-color: var(--accent);
+}
+.btn-primary:hover { background: #ffa02e; color: #15110a; border-color: #ffa02e; }
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+.btn-ghost:hover { color: var(--text); }
+
+/* Scan controls bar */
+.scan-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 16px 0 28px;
+}
+.scan-controls #queue-summary {
+  color: var(--text-muted);
+  font-size: 13px;
+  flex: 1;
+  min-width: 200px;
+}
+.scan-controls #queue-summary strong { color: var(--text); }
+
+/* Tick / queue toggle button */
+.tick-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.tick-btn:hover { color: var(--text); border-color: var(--accent); }
+.tick-btn.ticked {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.tick-btn.ticked:hover { background: transparent; color: var(--text-muted); border-color: var(--border); }
+
+/* Add competitor form */
+.add-form {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 0 0 28px;
+}
+.add-form.open { display: block; }
+.add-form h3 { margin-top: 0; }
+.add-form label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 14px 0 6px;
+}
+.add-form input, .add-form textarea {
+  width: 100%;
+  padding: 9px 12px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+}
+.add-form input:focus, .add-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+/* Added-this-session stack */
+#added-competitors { margin-top: 28px; }
+#added-competitors .card { border-color: var(--accent); }
+
+/* Template preview iframes */
+.template-preview-block {
+  margin: 24px 0 36px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.template-preview-block h3 { margin-top: 0; }
+.template-preview {
+  width: 100%;
+  height: 720px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  margin: 12px 0 8px;
+}
+.template-preview-meta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.template-preview-meta a { font-weight: 600; }
+
+/* Drive link grid */
+.drive-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 16px 0 28px;
+}
+.drive-links a {
+  display: block;
+  padding: 18px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text);
+  text-decoration: none;
+}
+.drive-links a:hover { border-color: var(--accent); }
+.drive-links a .label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.drive-links a strong {
+  display: block;
+  color: var(--text);
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+.drive-links a p {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.drive-links a .drive-placeholder {
+  display: inline-block;
+  color: var(--warn, #f5a623);
+  font-size: 12px;
+  font-weight: 600;
+}
+@media (max-width: 760px) {
+  .drive-links { grid-template-columns: 1fr; }
+}
+
+/* Competitor row tick cell */
+.tick-cell { width: 210px; text-align: right; }
+
 /* Footer */
 footer.site {
   border-top: 1px solid var(--border);

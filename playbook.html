@@ -27,24 +27,25 @@
 <section class="hero">
   <div class="eyebrow">Playbook</div>
   <h1>How a round runs</h1>
-  <p class="lede">Result-driven, not time-boxed. A round ends when the data says so &mdash; via Bayesian winner call, spend ceiling, or fatigue &mdash; and a new angle takes the loser&rsquo;s slot.</p>
+  <p class="lede">Result-driven, not time-boxed. A round ends when the data says so &mdash; via Bayesian graduate calls, spend ceiling, or fatigue &mdash; and any approach that clears the bar graduates into the CPA campaign. Losers are retired, new angles take the open slots.</p>
 </section>
 
 <h2>The loop</h2>
 
-<p>Every round runs the same seven-step cycle. Scan &rarr; propose 4 &rarr; pick 3 &rarr; ship &rarr; monitor gates &rarr; call winner/loser &rarr; replace. The competitor set is an explicit input; it evolves round-over-round.</p>
+<p>Every round runs the same seven-step cycle. Scan &rarr; propose 4 &rarr; pick 3 &rarr; ship &rarr; monitor gates &rarr; graduate winners / retire losers &rarr; replace. The competitor set is an explicit input; it evolves round-over-round.</p>
 
 <pre>
   [1] Competitor scan  &rarr;  [2] Propose 4 angles  &rarr;  [3] Pick 3 live + 1 bench
                                                                    &darr;
-  [7] Retire loser, promote bench  &larr;  [6] Gate 2: call winner  &larr;  [4] Ship
+  [7] Graduates to CPA,              &larr;  [6] Gate 2: graduate  &larr;  [4] Ship
+      losers retired, bench promoted       calls (1, 2 or 3)
            &uarr;                                 &uarr;                                &darr;
            &larr; [1] Re-scan competitors  &larr;  [5] Gate 1: early cull checks
 </pre>
 
 <h2>The two-gate architecture</h2>
 
-<p>Each round has two decision gates. Gate 1 is an <strong>early cull</strong> that keeps dud ads from eating budget. Gate 2 is the <strong>winner call</strong> that ends the round. Both are triggered by data, not by the calendar.</p>
+<p>Each round has two decision gates. Gate 1 is an <strong>early cull</strong> that keeps dud ads from eating budget. Gate 2 is the <strong>graduate call</strong> that moves winners into the CPA campaign &mdash; one approach, two, or all three if they clear the bar. The CPA campaign wants creative volume, so multiple winners per round are a feature, not a problem. Both gates are triggered by data, not by the calendar.</p>
 
 <div class="grid-2">
   <div class="card">
@@ -56,15 +57,20 @@
   </div>
 
   <div class="card">
-    <h3>Gate 2 &mdash; Winner call</h3>
-    <p><strong>Trigger (any one ends the round):</strong></p>
+    <h3>Gate 2 &mdash; Graduate call</h3>
+    <p><strong>Graduation bar (any one on its own qualifies an approach):</strong></p>
     <ul>
-      <li>Any approach reaches <strong>Bayesian prob-to-be-best &ge; 90%</strong> on CPA &mdash; that&rsquo;s the winner.</li>
-      <li>Any approach reaches <strong>&euro;5k cumulative spend</strong> without a clear winner &mdash; call it on current ranking; the ceiling is a hard stop.</li>
-      <li>Any approach&rsquo;s <strong>frequency exceeds 3</strong> &mdash; fatigue is now confounding the signal; call it on what you have.</li>
+      <li>Reaches <strong>Bayesian prob-to-be-best &ge; 90%</strong> on CPA vs baseline &mdash; clear winner.</li>
+      <li>Posts CPA <strong>at or below baseline (&euro;80)</strong> with &ge; 40 trial starts &mdash; significant volume at target, graduate it.</li>
+      <li>Reaches <strong>&euro;5k cumulative spend</strong> while holding CPA &le; baseline &mdash; spend ceiling hit, but the number held &mdash; graduate on what we have.</li>
     </ul>
-    <p><strong>Action:</strong> mark winner &amp; loser in the tracker. The middle stays live into the next round unchanged. The loser is retired.</p>
+    <p><strong>Round ends</strong> when every live approach has either graduated, been culled, or hit the spend ceiling without qualifying. <strong>Frequency &gt; 3</strong> forces an end call on any live approach &mdash; fatigue is now confounding signal.</p>
+    <p><strong>Action:</strong> Leo moves all graduates into the CPA campaign (no one-winner filter &mdash; 1, 2, or 3 can graduate). Clear losers are retired. Bench angle promotes; fresh briefs fill the remaining open slots.</p>
   </div>
+</div>
+
+<div class="callout">
+  <strong>Why multi-winner matters.</strong> The CPA campaign is hungry for creative variety &mdash; ad fatigue is its biggest failure mode. If a round gives us two or three approaches at or below baseline, we don&rsquo;t pick a favourite; we ship them all. The framework&rsquo;s job is to harvest high-performing creative for the always-on campaign, not to declare a single monthly victor.
 </div>
 
 <h2>Budget &amp; audience</h2>
@@ -98,8 +104,8 @@
   <tbody>
     <tr>
       <td><strong>CPA on trial start</strong></td>
-      <td>Gate 2 winner call (primary)</td>
-      <td>Bayesian prob-to-be-best &ge; 90%</td>
+      <td>Gate 2 graduate call (primary)</td>
+      <td>Bayesian prob-to-be-best &ge; 90%, OR CPA &le; baseline with &ge; 40 trial starts</td>
     </tr>
     <tr>
       <td><strong>CPL</strong></td>
@@ -109,16 +115,16 @@
     <tr>
       <td><strong>Cumulative spend</strong></td>
       <td>Gate 2 ceiling stop</td>
-      <td>&euro;5k per approach &rArr; force call</td>
+      <td>&euro;5k per approach &rArr; graduate if CPA &le; baseline, else retire</td>
     </tr>
     <tr>
       <td><strong>Frequency</strong></td>
       <td>Gate 2 fatigue stop</td>
-      <td>&gt; 3 &rArr; force call</td>
+      <td>&gt; 3 &rArr; force end call on that approach</td>
     </tr>
     <tr>
       <td>Trial-to-paid conversion rate</td>
-      <td>Secondary &mdash; escalate if winner&rsquo;s hold rate is weak</td>
+      <td>Secondary &mdash; escalate if a graduate&rsquo;s hold rate is weak</td>
       <td>&mdash;</td>
     </tr>
     <tr>
@@ -129,43 +135,51 @@
   </tbody>
 </table>
 
-<p>Current NI 360 baseline CPA: <strong>&euro;80</strong>. Win metric is lowest CPA with statistically meaningful volume; an approach needs &ge; 40 trial starts in the round to be eligible for winner status.</p>
+<p>Current NI 360 baseline CPA: <strong>&euro;80</strong>. Graduation metric is CPA at or below baseline with statistically meaningful volume; an approach needs &ge; 40 trial starts in the round to be eligible to graduate.</p>
 
-<h2>Retiring the loser</h2>
+<h2>Graduating winners &amp; retiring losers</h2>
+
+<p>At Gate 2, every live approach gets one of three fates:</p>
 
 <ol>
-  <li>Mark the loser&rsquo;s <strong>Status = Retired</strong> on the tracker&rsquo;s Ad Tests tab.</li>
-  <li>Log the round result on the Decision Log tab: dates, each approach&rsquo;s CPA / CPL / trial volume / frequency, winner, loser, one-line hypothesis for why.</li>
-  <li>Don&rsquo;t delete the retired brief or template &mdash; keep them for reference. If a competitor starts running that angle six months later, we may revive it.</li>
+  <li><strong>Graduate</strong> &mdash; CPA &le; baseline with volume, or Bayesian prob-to-be-best &ge; 90%. Mark <strong>Status = Graduated</strong> on the tracker&rsquo;s Ad Tests tab. Leo moves the asset into the CPA campaign within 48h.</li>
+  <li><strong>Retire</strong> &mdash; CPA materially above baseline, or spend ceiling hit without qualifying. Mark <strong>Status = Retired</strong>. Keep the brief and template in the repo for reference.</li>
+  <li><strong>Middle</strong> &mdash; not yet at graduation bar but not clearly losing. Stays live into the next round unchanged, counted as a carry-over.</li>
 </ol>
+
+<p>Log every round&rsquo;s outcome on the Decision Log tab: dates, each approach&rsquo;s CPA / CPL / trial volume / frequency, graduate(s), retired, one-line hypothesis for why each.</p>
 
 <div class="callout">
-  <strong>Keep three approaches live at all times.</strong> Never retire two in the same round &mdash; you lose the baseline. If two approaches tie on CPA, both stay; retire only the clear loser.
+  <strong>Multiple graduates per round is a feature.</strong> The CPA campaign needs creative variety to outrun fatigue. If two approaches hit the bar, both ship. Don&rsquo;t pick a favourite.
 </div>
 
-<h2>The replacement approach</h2>
+<div class="callout dim">
+  <strong>Keep momentum in the test.</strong> If a round graduates all three approaches, great &mdash; Round N+1 tests three fresh angles against the fresh competitor scan. If it graduates zero and retires three, the audience or the baseline is the issue &mdash; escalate to Jordan before respending.
+</div>
 
-<p>Rules for the new angle that replaces the loser:</p>
+<h2>The replacement approaches</h2>
+
+<p>Rules for the new angles that fill open slots (graduated or retired):</p>
 
 <ol>
-  <li><strong>It must attack a gap the current round exposed.</strong> If all three losing approaches leaned on X and the competition is also leaning on X, the new angle avoids X.</li>
-  <li><strong>It must be meaningfully distinct from the two survivors.</strong> Don&rsquo;t replace a price-anchor loser with a slightly-better price anchor &mdash; that&rsquo;s an iteration, not a new angle. Save iterations for within-approach variants once a winner is locked.</li>
-  <li><strong>Source it from the fresh competitor scan.</strong> Abandoned positions are gifts &mdash; if a competitor has dropped a stance, claim it fast.</li>
+  <li><strong>Each new angle must attack a gap the current round exposed.</strong> If the retired approaches leaned on X and the competition is also leaning on X, the new angles avoid X.</li>
+  <li><strong>Each must be meaningfully distinct from any carry-overs and from each other.</strong> Don&rsquo;t replace a price-anchor retiree with a slightly-better price anchor &mdash; that&rsquo;s an iteration, not a new angle. Save iterations for within-approach variants once a graduate is in CPA.</li>
+  <li><strong>Source them from the fresh competitor scan.</strong> Abandoned positions are gifts &mdash; if a competitor has dropped a stance, claim it fast.</li>
 </ol>
 
-<p>The replacement comes from the <strong>bench angle</strong> (the 4th proposed in the previous round that didn&rsquo;t go live). If the bench is a good fit for the new gap, promote it; otherwise, brief a fresh 4th from the scan and put the bench back on standby.</p>
+<p>The first replacement is the <strong>bench angle</strong> from the previous round (the 4th proposed that didn&rsquo;t go live). Any remaining open slots get briefed fresh from the scan. Refresh the bench for the next round.</p>
 
-<h2>When to stop rotating (locked winner)</h2>
+<h2>When to stop rotating (locked angle in CPA)</h2>
 
-<p>After <strong>three consecutive rounds</strong> where the same approach wins, stop rotating. At that point the framework&rsquo;s positioning-test job is done for that audience. Shift to:</p>
+<p>Once an approach has graduated into the CPA campaign, it&rsquo;s treated as &ldquo;locked&rdquo; for the positioning test &mdash; we don&rsquo;t re-run the same angle against itself. Ryan tracks its ongoing CPA in Post-Grad Watch. The framework&rsquo;s positioning-test job is done for that angle on that audience &mdash; shift to:</p>
 
 <ul>
-  <li>Within-approach creative variants (headline, hero image, CTA swaps)</li>
-  <li>Audience expansion / lookalike testing using the locked approach as the control</li>
-  <li>Placement-specific optimisation (9:16 native creative vs resized 4:5)</li>
+  <li>Within-approach creative variants (headline, hero image, CTA swaps) to refresh the graduate in CPA before it fatigues.</li>
+  <li>Audience expansion / lookalike testing using the graduated angle as the control.</li>
+  <li>Placement-specific optimisation (9:16 native creative vs resized 4:5).</li>
 </ul>
 
-<p>Run the framework again when you open a new audience (e.g. mixing engineers for iZotope MPS Pro, different territory for PA Subscription).</p>
+<p>Run the framework again when you open a new audience (e.g. mixing engineers for iZotope MPS Pro, different territory for PA Subscription), or when a graduated angle&rsquo;s CPA drifts &gt; 15% from its winning round.</p>
 
 <h2>Running the competitor scan</h2>
 

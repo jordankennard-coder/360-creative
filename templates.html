@@ -83,6 +83,88 @@
 
 </div>
 
+<h2>Live template previews</h2>
+
+<p>The actual HTML templates, rendered inline. Each template shows all three aspect ratios (4:5, 1:1, 9:16) side by side. These iframes pull from <code>site/templates/</code> so what you see below is exactly what Ryan&rsquo;s populating in this round.</p>
+
+<div class="template-preview-block">
+  <h3>A &mdash; Pro Toolkit Stack</h3>
+  <iframe class="template-preview" src="templates/approach_A_pro_toolkit.html" title="Approach A preview" loading="lazy"></iframe>
+  <div class="template-preview-meta">
+    <a href="templates/approach_A_pro_toolkit.html" target="_blank" rel="noopener">Open in new tab &#x2197;</a>
+    <span>File: <code>templates/approach_A_pro_toolkit.html</code></span>
+  </div>
+</div>
+
+<div class="template-preview-block">
+  <h3>B &mdash; Price Anchor / Updates Included</h3>
+  <iframe class="template-preview" src="templates/approach_B_price_anchor.html" title="Approach B preview" loading="lazy"></iframe>
+  <div class="template-preview-meta">
+    <a href="templates/approach_B_price_anchor.html" target="_blank" rel="noopener">Open in new tab &#x2197;</a>
+    <span>File: <code>templates/approach_B_price_anchor.html</code></span>
+  </div>
+</div>
+
+<div class="template-preview-block">
+  <h3>C &mdash; Named Producer Credibility</h3>
+  <iframe class="template-preview" src="templates/approach_C_pro_quote.html" title="Approach C preview" loading="lazy"></iframe>
+  <div class="template-preview-meta">
+    <a href="templates/approach_C_pro_quote.html" target="_blank" rel="noopener">Open in new tab &#x2197;</a>
+    <span>File: <code>templates/approach_C_pro_quote.html</code></span>
+  </div>
+</div>
+
+<div class="callout dim">
+  If a preview above looks empty, the images haven&rsquo;t been dropped in yet &mdash; the template reads them from <code>templates/images/</code>. Ping Ryan.
+</div>
+
+<h2>Files in Google Drive</h2>
+
+<p>Working files live in Google Drive &mdash; copy docs, asset libraries, producer-quote consent forms, legal sign-off thread. The HTML in this repo is the source of truth for the ad itself; the Drive is where the supporting docs live.</p>
+
+<div class="drive-links">
+  <a href="#" data-drive-slot="round-folder" target="_blank" rel="noopener">
+    <span class="label">Folder</span>
+    <strong>Round 1 folder &#x2197;</strong>
+    <p>Top-level folder for R1 &mdash; briefs, copy docs, final exports, legal thread.</p>
+    <span class="drive-placeholder">URL pending &mdash; Jordan to paste in</span>
+  </a>
+  <a href="#" data-drive-slot="copy-docs" target="_blank" rel="noopener">
+    <span class="label">Doc</span>
+    <strong>Copy docs (A / B / C) &#x2197;</strong>
+    <p>Headline + subhead variants per approach, with legal flags inline.</p>
+    <span class="drive-placeholder">URL pending</span>
+  </a>
+  <a href="#" data-drive-slot="asset-library" target="_blank" rel="noopener">
+    <span class="label">Folder</span>
+    <strong>Asset library &#x2197;</strong>
+    <p>Plugin UI screenshots, producer photos, logo lockups. Pulled into <code>templates/images/</code>.</p>
+    <span class="drive-placeholder">URL pending</span>
+  </a>
+  <a href="#" data-drive-slot="asset-tracker" target="_blank" rel="noopener">
+    <span class="label">Sheet</span>
+    <strong>Asset tracker &#x2197;</strong>
+    <p>Which assets are needed per approach &times; ratio &times; variant. Ryan &amp; Leo keep it green.</p>
+    <span class="drive-placeholder">URL pending</span>
+  </a>
+  <a href="#" data-drive-slot="ugc-consent" target="_blank" rel="noopener">
+    <span class="label">Folder</span>
+    <strong>UGC / producer consent &#x2197;</strong>
+    <p>Signed consent forms for Approach C. Must be on file before ship.</p>
+    <span class="drive-placeholder">URL pending</span>
+  </a>
+  <a href="#" data-drive-slot="legal-thread" target="_blank" rel="noopener">
+    <span class="label">Thread</span>
+    <strong>Legal sign-off thread &#x2197;</strong>
+    <p>Parm&rsquo;s working thread with legal on &ldquo;all updates included&rdquo; and pricing claims.</p>
+    <span class="drive-placeholder">URL pending</span>
+  </a>
+</div>
+
+<div class="callout">
+  <strong>Jordan:</strong> paste the six Drive URLs into the <code>href</code> attributes above (grep for <code>data-drive-slot</code>) and push. Until then the cards link to <code>#</code>.
+</div>
+
 <h2>How to populate a template</h2>
 
 <ol>

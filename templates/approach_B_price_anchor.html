@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NI 360 — Approach B: Price Anchor / Updates Included</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root {
+    --bg: #080C14;
+    --surface: #0F1520;
+    --surface-2: #151E2E;
+    --accent: #E9383F;
+    --accent-green: #2DD4BF;
+    --text: #FFFFFF;
+    --text-muted: #B8C2CE;
+    --text-dim: #6A7685;
+    --border: #1E2E44;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; }
+  body { background: #1C1C22; color: var(--text); padding: 40px 20px; min-height: 100vh; }
+  h1.page-title { font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; color: #999; margin-bottom: 24px; text-align: center; }
+  .gallery { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; align-items: flex-start; }
+  .ad-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .ad-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.08em; }
+  .download-btn {
+    background: var(--accent); color: white;
+    font: 700 11px 'Inter', sans-serif; letter-spacing: 0.04em;
+    padding: 8px 14px; border: none; border-radius: 5px; cursor: pointer;
+    text-transform: uppercase; transition: opacity 0.15s;
+  }
+  .download-btn:hover { opacity: 0.85; }
+  .download-btn:disabled { opacity: 0.5; cursor: wait; }
+
+  .ad { background: var(--bg); color: var(--text); position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.5); display: flex; flex-direction: column; }
+  .ad-4x5 { width: 432px; height: 540px; }
+  .ad-1x1 { width: 432px; height: 432px; }
+  .ad-9x16 { width: 324px; height: 576px; }
+
+  .brand-bar { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px 4px; }
+  .brand-logo { font-weight: 800; font-size: 13px; letter-spacing: 0.08em; }
+  .brand-logo .accent { color: var(--accent); }
+  .badge { font-size: 10px; font-weight: 700; color: var(--accent-green); padding: 4px 8px; border: 1px solid var(--accent-green); border-radius: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .headline-block { padding: 8px 20px 12px; }
+  .headline { font-size: 22px; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+  .headline .accent { color: var(--accent); }
+  .headline .strike { text-decoration: line-through; color: var(--text-dim); font-weight: 600; }
+
+  .price-table { margin: 0 20px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); flex: 1; display: flex; flex-direction: column; }
+  .price-table-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 11px; }
+  .price-table-row:last-child { border-bottom: none; }
+  .price-table-row.header { background: var(--surface-2); font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); font-weight: 600; padding: 8px 12px; }
+  .price-table-row.total { background: var(--surface-2); font-weight: 700; font-size: 13px; padding: 12px; }
+  .price-table-row.updates-row { background: rgba(45, 212, 191, 0.06); }
+  .plugin-name { color: var(--text); }
+  .price-outright { color: var(--text-muted); text-align: right; }
+  .price-360 { color: var(--accent-green); text-align: right; font-weight: 600; }
+  .price-360.x { color: #ff6b6b; }
+  .check { display: inline-block; }
+
+  .cta-block { padding: 12px 20px 18px; }
+  .cta-row { display: flex; gap: 8px; align-items: center; }
+  .cta-button { background: var(--accent); color: white; font-weight: 700; font-size: 12px; padding: 10px 14px; border-radius: 6px; flex: 1; text-align: center; }
+  .price-pill-group { display: flex; gap: 4px; }
+  .price-pill { background: var(--surface); border: 1px solid var(--border); color: var(--text); font-weight: 600; font-size: 11px; padding: 7px 10px; border-radius: 6px; white-space: nowrap; text-align: center; }
+  .price-pill.featured { border-color: var(--accent); color: white; }
+  .price-pill .tier-label { color: var(--text-dim); font-size: 8px; text-transform: uppercase; letter-spacing: 0.06em; display: block; line-height: 1.1; }
+  .fineprint { font-size: 9px; color: var(--text-dim); margin-top: 6px; }
+
+  .ad-9x16 .brand-bar { padding-top: 50px; }
+  .ad-9x16 .cta-block { padding-bottom: 100px; }
+  .ad-9x16 .headline { font-size: 20px; }
+  .ad-9x16 .price-table-row { padding: 7px 10px; font-size: 10px; }
+
+  .ad-1x1 .headline { font-size: 18px; }
+
+  .instructions { max-width: 900px; margin: 0 auto 32px; background: #222; border: 1px solid #333; padding: 20px; border-radius: 8px; font-size: 13px; line-height: 1.6; color: #ddd; }
+  .instructions h2 { font-size: 14px; margin-bottom: 8px; color: var(--accent); }
+  .instructions code { background: #111; padding: 2px 6px; border-radius: 3px; color: #8cf; }
+  .instructions .flag { color: #fbb; }
+</style>
+</head>
+<body>
+
+<div class="instructions">
+  <h2>Approach B — Price Anchor / Updates Included</h2>
+  <p><strong>To populate:</strong> edit the <code>CONFIG</code> block at the bottom of this file. Individual plugin prices in the comparison table <strong class="flag">must be verified before go-live</strong> — Meta will flag inaccurate pricing claims.</p>
+  <p><strong>Legal flags:</strong> "All future updates included" wording needs legal approval. "Cancel anytime" wording needs legal approval. Total-savings percentage (if added) needs substantiation.</p>
+  <p><strong>Required assets:</strong> NI 360 red logomark (all three ratios), verified outright plugin prices (6 plugins + total), confirmed trial terms copy.</p>
+</div>
+
+<h1 class="page-title">Approach B — Price Anchor / Updates Included · Round 1</h1>
+
+<div class="gallery">
+
+  <!-- 4:5 -->
+  <div class="ad-wrap">
+    <div class="ad ad-4x5">
+      <div class="brand-bar">
+        <div class="brand-logo">NI <span class="accent">360</span></div>
+        <div class="badge" data-bind="badge">All updates included</div>
+      </div>
+      <div class="headline-block">
+        <div class="headline" data-bind="headline"></div>
+      </div>
+      <div class="price-table" data-bind-table></div>
+      <div class="cta-block">
+        <div class="cta-row">
+          <div class="cta-button" data-bind="cta"></div>
+          <div class="price-pill-group">
+            <div class="price-pill"><span class="tier-label">Monthly</span><span data-bind="price_monthly"></span></div>
+            <div class="price-pill featured"><span class="tier-label">Annual</span><span data-bind="price_annual"></span></div>
+          </div>
+        </div>
+        <div class="fineprint" data-bind="fineprint"></div>
+      </div>
+    </div>
+    <button class="download-btn" data-ad-idx="0" data-ratio="4x5">Download 1080×1350 PNG</button>
+    <div class="ad-label">4:5 · 1080×1350 · Feed</div>
+  </div>
+
+  <!-- 1:1 -->
+  <div class="ad-wrap">
+    <div class="ad ad-1x1">
+      <div class="brand-bar">
+        <div class="brand-logo">NI <span class="accent">360</span></div>
+        <div class="badge" data-bind="badge">All updates included</div>
+      </div>
+      <div class="headline-block">
+        <div class="headline" data-bind="headline_short"></div>
+      </div>
+      <div class="price-table" data-bind-table data-short="true"></div>
+      <div class="cta-block">
+        <div class="cta-row">
+          <div class="cta-button" data-bind="cta"></div>
+          <div class="price-pill-group">
+            <div class="price-pill featured"><span class="tier-label">From</span><span data-bind="price_monthly"></span></div>
+          </div>
+        </div>
+        <div class="fineprint" data-bind="fineprint"></div>
+      </div>
+    </div>
+    <button class="download-btn" data-ad-idx="1" data-ratio="1x1">Download 1080×1080 PNG</button>
+    <div class="ad-label">1:1 · 1080×1080 · Feed fallback</div>
+  </div>
+
+  <!-- 9:16 -->
+  <div class="ad-wrap">
+    <div class="ad ad-9x16">
+      <div class="brand-bar">
+        <div class="brand-logo">NI <span class="accent">360</span></div>
+        <div class="badge" data-bind="badge">All updates included</div>
+      </div>
+      <div class="headline-block">
+        <div class="headline" data-bind="headline"></div>
+      </div>
+      <div class="price-table" data-bind-table></div>
+      <div class="cta-block">
+        <div class="cta-row">
+          <div class="cta-button" data-bind="cta"></div>
+          <div class="price-pill-group">
+            <div class="price-pill featured"><span class="tier-label">From</span><span data-bind="price_monthly"></span></div>
+          </div>
+        </div>
+        <div class="fineprint" data-bind="fineprint"></div>
+      </div>
+    </div>
+    <button class="download-btn" data-ad-idx="2" data-ratio="9x16">Download 1080×1920 PNG</button>
+    <div class="ad-label">9:16 · 1080×1920 · Stories / Reels</div>
+  </div>
+
+</div>
+
+<script>
+  // ============================================================
+  //  EDIT THIS BLOCK TO POPULATE THE AD
+  //  NOTE: verify every price with legal / product before ship
+  // ============================================================
+  const CONFIG = {
+    // ===== BADGE =====
+    badge: 'All updates included',
+    // Legal sign-off required before ship (tracked as B10 in asset sheet)
+
+    // ===== HEADLINES =====
+    headline: 'Buy outright: <span class="strike">$1,599</span>.<br>Or <span class="accent">$15/mo</span> — updates included.',
+    headline_short: '<span class="strike">$1,599</span> <span class="accent">→ $15/mo</span>',
+    // Alternates:
+    //   "You don't own your plugins forever. You own them this year."
+    //   'Stop buying updates. Start getting them.'
+
+    // ===== CTA + PRICE =====
+    cta: 'Try free for 14 days',
+    price_monthly: '$15/mo',
+    price_annual: 'Save 20% annually',
+    // ^ VERIFY with product team whether annual discount structure exists and at what %
+
+    // ===== FINE PRINT =====
+    fineprint: 'Billed monthly after trial · All future updates included · Cancel anytime',
+
+    // ===== PRICE COMPARISON TABLE =====
+    // ALL PRICES BELOW ARE ILLUSTRATIVE — MUST BE LEGAL-VERIFIED BEFORE GO-LIVE
+    // Tracked as B03–B09 in the asset sheet. Sum must match total_outright within rounding.
+    comparison: [
+      { name: 'Kontakt 8',      outright: '$249',   included: true },
+      { name: 'Massive X',      outright: '$199',   included: true },
+      { name: 'Guitar Rig Pro', outright: '$199',   included: true },
+      { name: 'Ozone 11',       outright: '$249',   included: true },
+      { name: 'Neutron 5',      outright: '$249',   included: true },
+      { name: 'Battery 4',      outright: '$99',    included: true },
+    ],
+    total_outright: '$1,599+',
+    total_360:      '$15/mo',
+    show_updates_row: true,
+
+    // ===== AD DESCRIPTION FIELD (Meta primary text) =====
+    description: "Kontakt, Massive X, Guitar Rig, Ozone, Neutron, Battery — buying outright is $1,599+. NI 360 Essentials is $15/mo and every future update is included. Existing licences stay yours. Try free for 14 days.",
+
+    // ===== EXPORT SETTINGS =====
+    approach_id: 'B',
+    audience_id: 'broadtrial',
+    round_id: 'R1',
+  };
+  // ============================================================
+
+  function render() {
+    document.querySelectorAll('[data-bind]').forEach(el => {
+      const key = el.getAttribute('data-bind');
+      if (CONFIG[key] !== undefined) el.innerHTML = CONFIG[key];
+    });
+    document.querySelectorAll('[data-bind-table]').forEach(table => {
+      const short = table.getAttribute('data-short') === 'true';
+      const rows = short ? CONFIG.comparison.slice(0, 4) : CONFIG.comparison;
+      table.innerHTML = `
+        <div class="price-table-row header">
+          <div>Plugin</div>
+          <div style="text-align:right;">Buy outright</div>
+          <div style="text-align:right;">NI 360</div>
+        </div>
+        ${rows.map(r => `
+          <div class="price-table-row">
+            <div class="plugin-name">${r.name}</div>
+            <div class="price-outright"><span class="strike">${r.outright}</span></div>
+            <div class="price-360">${r.included ? '✓ Included' : '—'}</div>
+          </div>
+        `).join('')}
+        ${CONFIG.show_updates_row ? `
+          <div class="price-table-row updates-row">
+            <div class="plugin-name">All future updates</div>
+            <div class="price-outright x">✗ Not included</div>
+            <div class="price-360">✓ Included</div>
+          </div>
+        ` : ''}
+        <div class="price-table-row total">
+          <div>Total</div>
+          <div class="price-outright"><span class="strike">${CONFIG.total_outright}</span></div>
+          <div class="price-360">${CONFIG.total_360}</div>
+        </div>
+      `;
+    });
+  }
+  render();
+
+  // ===== PNG export (html2canvas) =====
+  const SCALE_FOR = {
+    '4x5':  1080 / 432,
+    '1x1':  1080 / 432,
+    '9x16': 1080 / 324,
+  };
+  document.querySelectorAll('.download-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const idx = parseInt(btn.getAttribute('data-ad-idx'), 10);
+      const ratio = btn.getAttribute('data-ratio');
+      const ad = document.querySelectorAll('.ad')[idx];
+      if (!ad) return;
+      const originalLabel = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Rendering…';
+      try {
+        const canvas = await html2canvas(ad, {
+          scale: SCALE_FOR[ratio] || 2.5,
+          backgroundColor: null,
+          useCORS: true,
+          logging: false,
+        });
+        const link = document.createElement('a');
+        link.download = `NI360_${CONFIG.approach_id}_${ratio}_${CONFIG.audience_id}_${CONFIG.round_id}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      } catch (err) {
+        alert('Render failed — check console. ' + err.message);
+        console.error(err);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = originalLabel;
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
