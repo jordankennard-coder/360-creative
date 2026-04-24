@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Templates &amp; Briefs · NI 360 Static Ad Framework</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="dot"></span>NI 360 Static Ad Framework</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="roles.html">Roles</a>
+      <a href="competitor.html">Competitor Queue</a>
+      <a href="templates.html" class="active">Templates</a>
+      <a href="results.html">Results History</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="eyebrow">Templates &amp; briefs</div>
+  <h1>Populate, preview, ship</h1>
+  <p class="lede">Three approach templates, one per live angle. Each is a single HTML file with a <code>CONFIG</code> block at the top &mdash; edit the copy, drop the images, open in a browser to preview at 4:5, 1:1, and 9:16.</p>
+</section>
+
+<h2>Round 1 approach briefs</h2>
+
+<p>Each brief attacks a specific competitor gap identified in the <a href="competitor.html">competitor queue</a>. The brief drives the template &mdash; don&rsquo;t ship a template without matching it to its brief&rsquo;s visual hierarchy and headline options.</p>
+
+<div class="grid-3">
+
+  <div class="card">
+    <h3>A &mdash; Pro Toolkit Stack</h3>
+    <p><strong>Gap attacked:</strong> pro-grade production-tool credibility</p>
+    <p><strong>Core angle:</strong> Show the actual tools &mdash; Kontakt, Massive X, Guitar Rig, Ozone, Neutron &mdash; that pros use on records. Credibility via specificity.</p>
+    <p><strong>Headline options:</strong></p>
+    <ul>
+      <li>&ldquo;The tools on the records you love. From $15/mo.&rdquo;</li>
+      <li>&ldquo;Real plugins. The ones on actual records.&rdquo;</li>
+      <li>&ldquo;Kontakt, Massive X, Ozone &mdash; $15/mo. Yes, really.&rdquo;</li>
+    </ul>
+    <p><strong>Visual:</strong> 4&ndash;6 plugin UI windows in a grid; plugin name labels; CTA with price pill.</p>
+    <p><strong>Template:</strong> <code>templates/approach_A_pro_toolkit.html</code></p>
+    <p><span class="pill pill-live">Live</span></p>
+  </div>
+
+  <div class="card">
+    <h3>B &mdash; Price Anchor / Updates Included</h3>
+    <p><strong>Gap attacked:</strong> outright-vs-subscription price comparison (nobody running this)</p>
+    <p><strong>Core angle:</strong> Compare outright Komplete (~$1,599) vs $15&ndash;50/mo &mdash; lead with &ldquo;all future updates included&rdquo; to kill the perpetual-vs-sub objection.</p>
+    <p><strong>Headline options:</strong></p>
+    <ul>
+      <li>&ldquo;$1,599 outright. Or $15/mo &mdash; with every update included.&rdquo;</li>
+      <li>&ldquo;You don&rsquo;t own your plugins forever. You own them this year.&rdquo;</li>
+      <li>&ldquo;Stop buying updates. Start getting them.&rdquo;</li>
+    </ul>
+    <p><strong>Visual:</strong> side-by-side comparison table, total row, updates-included row with &#x2713;/&#x2717;, dual price pill.</p>
+    <p><strong>Template:</strong> <code>templates/approach_B_price_anchor.html</code></p>
+    <p><span class="pill pill-live">Live</span></p>
+  </div>
+
+  <div class="card">
+    <h3>C &mdash; Named Producer Credibility</h3>
+    <p><strong>Gap attacked:</strong> pro credits vs generic creator testimonials</p>
+    <p><strong>Core angle:</strong> A testimonial from a named, credited producer or ME &mdash; quote + credits + the plugins they rely on as pills.</p>
+    <p><strong>Headline options (the quote is the headline):</strong></p>
+    <ul>
+      <li>&ldquo;I use Kontakt on every session. Massive X on half of them. 360 pays for itself the first week.&rdquo;</li>
+      <li>&ldquo;Ozone and Neutron are on every master I turn in.&rdquo;</li>
+      <li>&ldquo;The Guitar Rig amp sim I used on [Track] is in 360.&rdquo;</li>
+    </ul>
+    <p><strong>Visual:</strong> producer photo/studio shot + quote, attribution, plugin pills, 5-star rating, CTA.</p>
+    <p><strong>Template:</strong> <code>templates/approach_C_pro_quote.html</code></p>
+    <p><span class="pill pill-live">Live</span></p>
+  </div>
+
+</div>
+
+<h2>How to populate a template</h2>
+
+<ol>
+  <li>Open the matching HTML template in <code>NI_360_Ad_Framework/templates/</code>.</li>
+  <li>Edit the <code>CONFIG</code> block at the top of the file &mdash; headline, subheadline, CTA copy, image paths.</li>
+  <li>Drop the images referenced in the config into <code>templates/images/</code>. Recommended sizes are listed in each template&rsquo;s comments.</li>
+  <li>Open the HTML file in a browser to preview all three aspect ratios (4:5, 1:1, 9:16). The template renders all three side by side.</li>
+  <li>Cross-check the <strong>asset tracker</strong> for what&rsquo;s still missing; mark Done as you go.</li>
+  <li>Export the rendered ad (screenshot at marked dimensions, or use the browser&rsquo;s print-to-PDF with a fixed viewport) and hand off to Smartly.</li>
+</ol>
+
+<div class="callout dim">
+  <strong>File naming for Smartly hand-off:</strong> <code>NI_NI360_R[N]_[A|B|C]_[format].[ext]</code>, e.g. <code>NI_NI360_R1_A_4x5.jpg</code>. Leo owns enforcement.
+</div>
+
+<h2>Asset tracker</h2>
+
+<p>The asset tracker lives in the repo as <code>NI_360_Asset_Tracker.xlsx</code>. It covers: which images are needed per approach, per aspect ratio, per copy variant &mdash; and who owns each. Parm and Leo keep this green.</p>
+
+<div class="callout">
+  <strong>Asset QA before ship.</strong> Every approach needs 4:5, 1:1, and 9:16. Missing one format = no ship. Leo verifies in Meta Ads Manager that all three placements render clean before the round goes live.
+</div>
+
+<h2>Template files in the repo</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>File</th>
+      <th>Approach</th>
+      <th>Populated?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>templates/approach_A_pro_toolkit.html</code></td>
+      <td>A &mdash; Pro Toolkit Stack</td>
+      <td>Round 1 ready &mdash; Parm confirms on D-3</td>
+    </tr>
+    <tr>
+      <td><code>templates/approach_B_price_anchor.html</code></td>
+      <td>B &mdash; Price Anchor / Updates Included</td>
+      <td>Round 1 ready &mdash; pending legal sign-off on &ldquo;all updates included&rdquo;</td>
+    </tr>
+    <tr>
+      <td><code>templates/approach_C_pro_quote.html</code></td>
+      <td>C &mdash; Named Producer Credibility</td>
+      <td>Round 1 ready &mdash; pending UGC consent on file</td>
+    </tr>
+    <tr>
+      <td><code>templates/images/</code></td>
+      <td>Shared asset folder</td>
+      <td>See asset tracker for per-image status</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Legal flags (by approach)</h2>
+
+<ul>
+  <li><strong>A &mdash; Pro Toolkit:</strong> plugin UI screenshots must be current-version; any artist endorsement needs consent.</li>
+  <li><strong>B &mdash; Price Anchor:</strong> individual plugin prices must be verified at go-live. &ldquo;All future updates included&rdquo; wording needs legal approval. Comparison total must round cleanly or it reads as dodgy.</li>
+  <li><strong>C &mdash; Producer Quote:</strong> quote must be attributed, verified, consented in writing. Credits must be accurate. Star rating must be sourced from a verifiable platform (Trustpilot, G2, Google Reviews) &mdash; not fabricated. UGC consent documentation must be on file before ship.</li>
+</ul>
+
+<p>Parm files the copy doc with legal flags; Jordan approves before the brief goes to Leo for trafficking.</p>
+
+</main>
+
+<footer class="site">
+  NI 360 Static Ad Framework &middot; <a href="index.html">Home</a> &middot; <a href="https://docs.google.com/spreadsheets/d/1p_AmG7aTjeJiSifNN6ovVn6mrYgyHlk9WPwjsRECyRQ/edit" target="_blank" rel="noopener">Open tracker &#x2197;</a>
+</footer>
+
+</body>
+</html>

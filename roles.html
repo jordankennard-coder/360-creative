@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roles · NI 360 Static Ad Framework</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="dot"></span>NI 360 Static Ad Framework</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="roles.html" class="active">Roles</a>
+      <a href="competitor.html">Competitor Queue</a>
+      <a href="templates.html">Templates</a>
+      <a href="results.html">Results History</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="eyebrow">Roles &amp; cadence</div>
+  <h1>Who owns what</h1>
+  <p class="lede">The framework runs on four roles across each round. Each one has a clear trigger and a clear deliverable &mdash; no diffused ownership, no waiting on email.</p>
+</section>
+
+<div class="callout dim">
+  <strong>Jordan:</strong> this page is a first-draft allocation &mdash; edit as needed in the repo (<code>site/roles.html</code>). Swap names, adjust scope, add anyone I&rsquo;ve missed. Handoff timing is opinionated but adjustable.
+</div>
+
+<h2>The four roles</h2>
+
+<div class="grid-2">
+
+  <div class="card">
+    <h3>Jordan &mdash; Framework lead</h3>
+    <p><strong>Owns:</strong> the system itself. Round cadence, competitor scan, winner calls, escalations.</p>
+    <p><strong>Each round:</strong></p>
+    <ul>
+      <li>Runs the competitor scan at round kickoff (45&ndash;60 min).</li>
+      <li>Reviews the 4 proposed angles, picks 3 live + 1 bench.</li>
+      <li>Approves the briefs before they go to creative.</li>
+      <li>Watches the tracker daily once ads are live. Calls Gate 1 and Gate 2.</li>
+      <li>Writes the round recap in the Decision Log tab.</li>
+      <li>Flags anything off-baseline to leadership (unexpected wins, baseline shifts, budget re-asks).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Ryan &mdash; Data &amp; analysis</h3>
+    <p><strong>Owns:</strong> the tracker. Gate-readiness signals. Round-level data integrity.</p>
+    <p><strong>Each round:</strong></p>
+    <ul>
+      <li>Verifies Meta data is flowing into the tracker (Ad Tests tab populated daily).</li>
+      <li>Monitors Gate 1 triggers: flags any approach where CPL &gt; &euro;3 past &euro;500 spent.</li>
+      <li>Monitors Gate 2 triggers: Bayesian prob-to-be-best, spend-to-ceiling, frequency.</li>
+      <li>Posts a short Slack/Teams update when a gate threshold is crossed.</li>
+      <li>Validates the round recap before it&rsquo;s finalised.</li>
+      <li>Maintains Post-Grad Watch tab for locked winners (ongoing CPA drift alerts).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Parm &mdash; Creative &amp; copy</h3>
+    <p><strong>Owns:</strong> the ads themselves. Brief &rarr; template &rarr; delivery.</p>
+    <p><strong>Each round:</strong></p>
+    <ul>
+      <li>Takes approved briefs and populates the three HTML templates.</li>
+      <li>Drafts headline options per approach (picks one to ship, holds 2&ndash;3 for iteration).</li>
+      <li>Sources or commissions imagery (plugin UI shots, producer photography, comparison tables).</li>
+      <li>Hands final assets to Leo in Smartly-ready format (4:5, 1:1, 9:16 per approach).</li>
+      <li>Files a copy doc with legal flags (price claims, &ldquo;updates included&rdquo; wording, testimonial consent).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Leo &mdash; Media &amp; trafficking</h3>
+    <p><strong>Owns:</strong> getting the ads live, pacing them, and keeping delivery clean.</p>
+    <p><strong>Each round:</strong></p>
+    <ul>
+      <li>Sets up the three approach ad sets in Meta Ads Manager via Smartly.</li>
+      <li>Enforces equal budget split and spend parity (within 10% across the three).</li>
+      <li>QA on placement rendering across feed / Stories / Reels before launch.</li>
+      <li>Pauses losers when Gate 1 triggers (per Jordan&rsquo;s call).</li>
+      <li>Retires the round losers and ships replacements within 48h of Gate 2 call.</li>
+      <li>Owns naming convention: <code>NI_NI360_R[N]_[A|B|C]_[format]</code>.</li>
+    </ul>
+  </div>
+
+</div>
+
+<h2>Handoff sequence per round</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Owner</th>
+      <th>Deliverable</th>
+      <th>Handoff to</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>D-5</td>
+      <td>Jordan</td>
+      <td>Competitor scan + 4 proposed angles (3 live, 1 bench)</td>
+      <td>Parm</td>
+    </tr>
+    <tr>
+      <td>D-3</td>
+      <td>Parm</td>
+      <td>Populated templates + copy doc (all three approaches)</td>
+      <td>Leo</td>
+    </tr>
+    <tr>
+      <td>D-1</td>
+      <td>Leo</td>
+      <td>Ad sets built in Smartly, budgets set, QA passed</td>
+      <td>Ryan</td>
+    </tr>
+    <tr>
+      <td>D0</td>
+      <td>Leo &rarr; Ryan</td>
+      <td>Ads live &mdash; Ryan confirms data flowing into tracker</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td>D0&ndash;D14+</td>
+      <td>Ryan</td>
+      <td>Daily gate readiness check; flags when any trigger fires</td>
+      <td>Jordan</td>
+    </tr>
+    <tr>
+      <td>Gate trip</td>
+      <td>Jordan</td>
+      <td>Winner call or Gate 1 cull decision</td>
+      <td>Leo</td>
+    </tr>
+    <tr>
+      <td>+48h</td>
+      <td>Leo</td>
+      <td>Losers retired, replacements live</td>
+      <td>Ryan</td>
+    </tr>
+    <tr>
+      <td>+72h</td>
+      <td>Jordan</td>
+      <td>Round recap written, posted to team, logged in tracker</td>
+      <td>&mdash;</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Weekly cadence</h2>
+
+<div class="grid-3">
+  <div class="card">
+    <h3>Monday &mdash; round health</h3>
+    <p>Ryan posts gate-readiness summary (CPL by approach, spend-to-ceiling, frequency). Jordan flags any calls to be made that week.</p>
+  </div>
+  <div class="card">
+    <h3>Mid-round &mdash; gate watch</h3>
+    <p>Ryan posts daily when any gate threshold is within 20% of tripping. No posts if nothing&rsquo;s moving.</p>
+  </div>
+  <div class="card">
+    <h3>Round end &mdash; recap</h3>
+    <p>Jordan posts a one-paragraph recap: who won, why (hypothesis), what&rsquo;s next, what&rsquo;s on the bench. Link to the Decision Log entry.</p>
+  </div>
+</div>
+
+<h2>Escalation</h2>
+
+<p>Anything that breaks the framework&rsquo;s assumptions goes to Jordan first:</p>
+
+<ul>
+  <li><strong>Baseline CPA shifts &gt; 20%</strong> &mdash; the current round&rsquo;s comparisons may be invalid.</li>
+  <li><strong>All three approaches trip Gate 1</strong> &mdash; the audience, not the creative, is the issue.</li>
+  <li><strong>A locked winner&rsquo;s CPA drifts &gt; 15% from its winning round</strong> &mdash; probably fatigue; trigger a variant round.</li>
+  <li><strong>A competitor launches a look-alike of one of our live approaches</strong> &mdash; decide whether to pivot, double down, or hold.</li>
+  <li><strong>Legal flags on copy</strong> &mdash; pause the affected ad, loop in legal, replace or re-word before re-shipping.</li>
+</ul>
+
+</main>
+
+<footer class="site">
+  NI 360 Static Ad Framework &middot; <a href="index.html">Home</a> &middot; <a href="https://docs.google.com/spreadsheets/d/1p_AmG7aTjeJiSifNN6ovVn6mrYgyHlk9WPwjsRECyRQ/edit" target="_blank" rel="noopener">Open tracker &#x2197;</a>
+</footer>
+
+</body>
+</html>

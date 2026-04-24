@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Playbook · NI 360 Static Ad Framework</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="dot"></span>NI 360 Static Ad Framework</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="playbook.html" class="active">Playbook</a>
+      <a href="roles.html">Roles</a>
+      <a href="competitor.html">Competitor Queue</a>
+      <a href="templates.html">Templates</a>
+      <a href="results.html">Results History</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="eyebrow">Playbook</div>
+  <h1>How a round runs</h1>
+  <p class="lede">Result-driven, not time-boxed. A round ends when the data says so &mdash; via Bayesian winner call, spend ceiling, or fatigue &mdash; and a new angle takes the loser&rsquo;s slot.</p>
+</section>
+
+<h2>The loop</h2>
+
+<p>Every round runs the same seven-step cycle. Scan &rarr; propose 4 &rarr; pick 3 &rarr; ship &rarr; monitor gates &rarr; call winner/loser &rarr; replace. The competitor set is an explicit input; it evolves round-over-round.</p>
+
+<pre>
+  [1] Competitor scan  &rarr;  [2] Propose 4 angles  &rarr;  [3] Pick 3 live + 1 bench
+                                                                   &darr;
+  [7] Retire loser, promote bench  &larr;  [6] Gate 2: call winner  &larr;  [4] Ship
+           &uarr;                                 &uarr;                                &darr;
+           &larr; [1] Re-scan competitors  &larr;  [5] Gate 1: early cull checks
+</pre>
+
+<h2>The two-gate architecture</h2>
+
+<p>Each round has two decision gates. Gate 1 is an <strong>early cull</strong> that keeps dud ads from eating budget. Gate 2 is the <strong>winner call</strong> that ends the round. Both are triggered by data, not by the calendar.</p>
+
+<div class="grid-2">
+  <div class="card">
+    <h3>Gate 1 &mdash; Early cull</h3>
+    <p><strong>Trigger:</strong> any approach&rsquo;s CPL crosses &euro;3 after its first &euro;500 of spend.</p>
+    <p><strong>Action:</strong> cull that ad. We don&rsquo;t wait for CPA signal if the lead cost is already out of range &mdash; downstream conversion won&rsquo;t rescue a bad top-of-funnel number.</p>
+    <p><strong>Guardrail:</strong> don&rsquo;t cull before &euro;500 spent on that approach. Below that, the CPL estimate is too noisy.</p>
+    <p><em>Exception:</em> if all three approaches trip Gate 1, the issue is the audience, not the creative &mdash; pause the round and re-scope before respending.</p>
+  </div>
+
+  <div class="card">
+    <h3>Gate 2 &mdash; Winner call</h3>
+    <p><strong>Trigger (any one ends the round):</strong></p>
+    <ul>
+      <li>Any approach reaches <strong>Bayesian prob-to-be-best &ge; 90%</strong> on CPA &mdash; that&rsquo;s the winner.</li>
+      <li>Any approach reaches <strong>&euro;5k cumulative spend</strong> without a clear winner &mdash; call it on current ranking; the ceiling is a hard stop.</li>
+      <li>Any approach&rsquo;s <strong>frequency exceeds 3</strong> &mdash; fatigue is now confounding the signal; call it on what you have.</li>
+    </ul>
+    <p><strong>Action:</strong> mark winner &amp; loser in the tracker. The middle stays live into the next round unchanged. The loser is retired.</p>
+  </div>
+</div>
+
+<h2>Budget &amp; audience</h2>
+
+<div class="grid-2">
+  <div class="card">
+    <h3>Budget split</h3>
+    <p><strong>Equal split across the three live approaches.</strong> We&rsquo;re testing positioning, not optimising inside a proven angle &mdash; unequal weighting muddies the signal.</p>
+    <p>Recommended per-approach budget: <strong>&euro;1.5k &ndash; &euro;5k</strong> per round. Under &euro;1.5k you won&rsquo;t reach Gate 2 in a reasonable window; over &euro;5k you&rsquo;re violating the spend ceiling.</p>
+    <p>Placement: Advantage+ across Facebook and Instagram feed, Stories, Reels. 4:5 and 1:1 run feed; 9:16 runs Stories/Reels. No Audience Network.</p>
+  </div>
+
+  <div class="card">
+    <h3>Audience</h3>
+    <p><strong>One broad prospecting audience per round.</strong> Don&rsquo;t stack audiences &mdash; you want the positioning signal clean. Audience testing is a separate track once a winner is locked.</p>
+    <p>Current round: broad trial acquisition (producer-leaning interest stacks + lookalikes of trial starters).</p>
+    <p><strong>Spend parity:</strong> within 10% across the three approaches. If one spent far less, the pacing was off &mdash; re-run that arm before calling the round.</p>
+  </div>
+</div>
+
+<h2>Metrics</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Used for</th>
+      <th>Threshold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>CPA on trial start</strong></td>
+      <td>Gate 2 winner call (primary)</td>
+      <td>Bayesian prob-to-be-best &ge; 90%</td>
+    </tr>
+    <tr>
+      <td><strong>CPL</strong></td>
+      <td>Gate 1 early cull</td>
+      <td>&gt; &euro;3 after &euro;500 spent &rArr; cull</td>
+    </tr>
+    <tr>
+      <td><strong>Cumulative spend</strong></td>
+      <td>Gate 2 ceiling stop</td>
+      <td>&euro;5k per approach &rArr; force call</td>
+    </tr>
+    <tr>
+      <td><strong>Frequency</strong></td>
+      <td>Gate 2 fatigue stop</td>
+      <td>&gt; 3 &rArr; force call</td>
+    </tr>
+    <tr>
+      <td>Trial-to-paid conversion rate</td>
+      <td>Secondary &mdash; escalate if winner&rsquo;s hold rate is weak</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td>CTR, CPM</td>
+      <td>Diagnostic &mdash; understand <em>why</em> an approach won or lost</td>
+      <td>Don&rsquo;t call on these alone</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Current NI 360 baseline CPA: <strong>&euro;80</strong>. Win metric is lowest CPA with statistically meaningful volume; an approach needs &ge; 40 trial starts in the round to be eligible for winner status.</p>
+
+<h2>Retiring the loser</h2>
+
+<ol>
+  <li>Mark the loser&rsquo;s <strong>Status = Retired</strong> on the tracker&rsquo;s Ad Tests tab.</li>
+  <li>Log the round result on the Decision Log tab: dates, each approach&rsquo;s CPA / CPL / trial volume / frequency, winner, loser, one-line hypothesis for why.</li>
+  <li>Don&rsquo;t delete the retired brief or template &mdash; keep them for reference. If a competitor starts running that angle six months later, we may revive it.</li>
+</ol>
+
+<div class="callout">
+  <strong>Keep three approaches live at all times.</strong> Never retire two in the same round &mdash; you lose the baseline. If two approaches tie on CPA, both stay; retire only the clear loser.
+</div>
+
+<h2>The replacement approach</h2>
+
+<p>Rules for the new angle that replaces the loser:</p>
+
+<ol>
+  <li><strong>It must attack a gap the current round exposed.</strong> If all three losing approaches leaned on X and the competition is also leaning on X, the new angle avoids X.</li>
+  <li><strong>It must be meaningfully distinct from the two survivors.</strong> Don&rsquo;t replace a price-anchor loser with a slightly-better price anchor &mdash; that&rsquo;s an iteration, not a new angle. Save iterations for within-approach variants once a winner is locked.</li>
+  <li><strong>Source it from the fresh competitor scan.</strong> Abandoned positions are gifts &mdash; if a competitor has dropped a stance, claim it fast.</li>
+</ol>
+
+<p>The replacement comes from the <strong>bench angle</strong> (the 4th proposed in the previous round that didn&rsquo;t go live). If the bench is a good fit for the new gap, promote it; otherwise, brief a fresh 4th from the scan and put the bench back on standby.</p>
+
+<h2>When to stop rotating (locked winner)</h2>
+
+<p>After <strong>three consecutive rounds</strong> where the same approach wins, stop rotating. At that point the framework&rsquo;s positioning-test job is done for that audience. Shift to:</p>
+
+<ul>
+  <li>Within-approach creative variants (headline, hero image, CTA swaps)</li>
+  <li>Audience expansion / lookalike testing using the locked approach as the control</li>
+  <li>Placement-specific optimisation (9:16 native creative vs resized 4:5)</li>
+</ul>
+
+<p>Run the framework again when you open a new audience (e.g. mixing engineers for iZotope MPS Pro, different territory for PA Subscription).</p>
+
+<h2>Running the competitor scan</h2>
+
+<p>Do this at the start of every round &mdash; not just when a loser is retired.</p>
+
+<ol>
+  <li>Pull the Meta Ad Library for each competitor in the scan set (see <a href="competitor.html">Competitor Queue</a>). Filter to ads active in the last 14 days.</li>
+  <li>Capture 3&ndash;5 top-running creatives per competitor &mdash; the ones running for weeks signal spend commitment.</li>
+  <li>For each, log: format, visual pattern, headline, CTA, price display, UI-vs-lifestyle imagery.</li>
+  <li>Roll findings into the &ldquo;Territory claimed&rdquo; section.</li>
+  <li>The &ldquo;Territory NOT claimed&rdquo; section is what feeds the next approach brief.</li>
+</ol>
+
+<p><strong>Time budget: 45&ndash;60 minutes.</strong> Scanning endlessly is procrastination &mdash; the framework is about moving.</p>
+
+</main>
+
+<footer class="site">
+  NI 360 Static Ad Framework &middot; <a href="index.html">Home</a> &middot; <a href="https://docs.google.com/spreadsheets/d/1p_AmG7aTjeJiSifNN6ovVn6mrYgyHlk9WPwjsRECyRQ/edit" target="_blank" rel="noopener">Open tracker &#x2197;</a>
+</footer>
+
+</body>
+</html>
