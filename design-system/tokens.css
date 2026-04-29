@@ -1,19 +1,17 @@
 /* ────────────────────────────────────────────────────────────────
-   NI 360 Ad Framework — design tokens
-   Sourced from "360 by Native Instruments — Design System" skill
-   Slimmed to what the 3 approach templates need.
-   Updates here roll out to all approach templates automatically.
+   360 by Native Instruments — Colors & Type
+   Source: Figma "360 Update 2025" + brand fonts shipped by NI
    ──────────────────────────────────────────────────────────────── */
 
-/* ── Brand fonts ──────────────────────────────────────────────── */
+/* ── Fonts ────────────────────────────────────────────────────── */
 @font-face {
-  font-family: "NATIVE Pro Wide";
-  src: url("./fonts/NATIVEPro-WideUltra.otf") format("opentype");
-  font-weight: 900; font-style: normal; font-display: swap;
+  font-family: "NATIVE Pro";
+  src: url("./fonts/NATIVEPro-Light.otf") format("opentype");
+  font-weight: 300; font-style: normal; font-display: swap;
 }
 @font-face {
-  font-family: "NATIVE Pro Wide";
-  src: url("./fonts/NATIVEPro-WideRegular.otf") format("opentype");
+  font-family: "NATIVE Pro";
+  src: url("./fonts/NATIVEPro-Regular.otf") format("opentype");
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
@@ -21,10 +19,48 @@
   src: url("./fonts/NATIVEPro-Ultra.otf") format("opentype");
   font-weight: 900; font-style: normal; font-display: swap;
 }
+
+@font-face {
+  font-family: "NATIVE Pro Narrow";
+  src: url("./fonts/NATIVEPro-NarrowLight.otf") format("opentype");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "NATIVE Pro Narrow";
+  src: url("./fonts/NATIVEPro-NarrowRegular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "NATIVE Pro Narrow";
+  src: url("./fonts/NATIVEPro-NarrowUltra.otf") format("opentype");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+
+@font-face {
+  font-family: "NATIVE Pro Wide";
+  src: url("./fonts/NATIVEPro-WideLight.otf") format("opentype");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "NATIVE Pro Wide";
+  src: url("./fonts/NATIVEPro-WideRegular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "NATIVE Pro Wide";
+  src: url("./fonts/NATIVEPro-WideUltra.otf") format("opentype");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+
 @font-face {
   font-family: "Graphik";
   src: url("./fonts/Graphik-Regular.otf") format("opentype");
   font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("./fonts/Graphik-RegularItalic.otf") format("opentype");
+  font-weight: 400; font-style: italic; font-display: swap;
 }
 @font-face {
   font-family: "Graphik";
@@ -33,30 +69,87 @@
 }
 @font-face {
   font-family: "Graphik";
+  src: url("./fonts/Graphik-MediumItalic.otf") format("opentype");
+  font-weight: 500; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Graphik";
   src: url("./fonts/Graphik-Semibold.otf") format("opentype");
   font-weight: 600; font-style: normal; font-display: swap;
 }
+@font-face {
+  font-family: "Graphik";
+  src: url("./fonts/Graphik-SemiboldItalic.otf") format("opentype");
+  font-weight: 600; font-style: italic; font-display: swap;
+}
 
 :root {
-  /* ── Core neutrals ────────────────────────────────────────── */
-  --ni-black:        rgb(0, 0, 0);
-  --ni-ink:          rgb(22, 24, 25);
-  --ni-ink-3:        rgb(7, 11, 16);
+  /* ── Color: core ─────────────────────────────────────────────── */
+  --ni-black:        rgb(0, 0, 0);            /* primary brand black */
+  --ni-ink:          rgb(22, 24, 25);         /* near-black body text */
+  --ni-ink-2:        rgb(29, 33, 41);         /* alt body */
+  --ni-ink-3:        rgb(7, 11, 16);          /* hero text on light */
   --ni-white:        rgb(255, 255, 255);
-  --ni-paper:        rgb(248, 249, 250);
-  --ni-gray-600:     rgb(96, 103, 112);
-  --ni-gray-400:     rgb(190, 195, 201);
-  --ni-gray-300:     rgb(218, 221, 225);  /* hairline border */
-  --ni-gray-150:     rgb(238, 240, 242);
+  --ni-paper:        rgb(248, 249, 250);      /* off-white surface, button fill on dark */
+
+  /* ── Color: neutrals (grays) ─────────────────────────────────── */
+  --ni-gray-900:     rgb(24, 24, 24);
+  --ni-gray-700:     rgb(75, 79, 86);
+  --ni-gray-600:     rgb(96, 103, 112);       /* secondary text */
+  --ni-gray-500:     rgb(112, 112, 112);
+  --ni-gray-400:     rgb(190, 195, 201);      /* hairline border */
+  --ni-gray-300:     rgb(218, 221, 225);      /* card border */
+  --ni-gray-250:     rgb(220, 225, 229);
+  --ni-gray-200:     rgb(227, 227, 227);
+  --ni-gray-150:     rgb(238, 240, 242);      /* subtle fills */
+  --ni-gray-100:     rgb(239, 241, 243);
+  --ni-gray-75:      rgb(242, 243, 245);
   --ni-gray-50:      rgb(248, 249, 250);
 
-  /* ── 360 spectrum trio ────────────────────────────────────── */
-  --c360-coral:      rgb(255, 120, 95);
-  --c360-teal:       rgb(0, 150, 135);
-  --c360-violet:     rgb(157, 92, 221);
-  --c360-blue-2:     rgb(89, 158, 238);
+  /* ── Brand secondary palette (per Brand Identity Guidelines v1.0) ──
+     Vibrant + Pastel sets. Reserved for brand-specific communications;
+     used one-at-a-time alongside black and/or white. */
+  --ni-vibrant-blue:   rgb(0, 0, 255);     /* #0000FF */
+  --ni-vibrant-green:  rgb(50, 250, 90);   /* #32FA5A */
+  --ni-vibrant-yellow: rgb(255, 225, 0);   /* #FFE100 */
+  --ni-vibrant-orange: rgb(255, 90, 0);    /* #FF5A00 */
+  --ni-vibrant-red:    rgb(255, 0, 0);     /* #FF0000 */
 
-  /* ── Signature gradient ───────────────────────────────────── */
+  --ni-pastel-teal:    rgb(0, 150, 175);   /* #0096AF */
+  --ni-pastel-green:   rgb(30, 170, 125);  /* #1EAA7D */
+  --ni-pastel-orange:  rgb(255, 155, 45);  /* #FF9B2D */
+  --ni-pastel-pink:    rgb(215, 165, 210); /* #D7A5D2 */
+  --ni-pastel-violet:  rgb(125, 110, 210); /* #7D6ED2 */
+
+  /* ── Color: 360 brand accents (the spectrum trio) ────────────── */
+  --c360-coral:      rgb(255, 120, 95);   /* warm — beginner / "improver" */
+  --c360-teal:       rgb(0, 150, 135);    /* cool — pro / "player" */
+  --c360-violet:     rgb(157, 92, 221);   /* dreamy — explorer / "dreamer" */
+  --c360-coral-2:    rgb(255, 120, 97);
+  --c360-violet-2:   rgb(158, 91, 222);
+  --c360-teal-2:     rgb(4, 149, 135);
+
+  /* Soft tints used in artwork backgrounds & post-process surfaces */
+  --c360-pink:       rgb(249, 94, 115);
+  --c360-red:        rgb(227, 34, 60);
+  --c360-sky:        rgb(72, 173, 248);
+  --c360-blue:       rgb(30, 95, 237);
+  --c360-blue-2:     rgb(89, 158, 238);   /* hero block bg */
+  --c360-navy:       rgb(57, 89, 150);
+
+  /* ── Color: semantic ─────────────────────────────────────────── */
+  --color-success:   rgb(18, 178, 98);   /* "You save" badge */
+  --color-bg:        var(--ni-white);
+  --color-bg-inverse:var(--ni-black);
+  --color-fg:        var(--ni-ink);
+  --color-fg-muted:  var(--ni-gray-600);
+  --color-fg-inverse:var(--ni-paper);
+  --color-border:    var(--ni-gray-300);
+  --color-border-strong: var(--ni-gray-400);
+  --color-surface:   var(--ni-white);
+  --color-surface-2: var(--ni-gray-50);
+
+  /* Signature gradient — "spectrum" used across ads & web hero */
   --grad-spectrum: linear-gradient(
     115deg,
     var(--c360-violet)   0%,
@@ -64,20 +157,218 @@
     var(--c360-teal)    70%,
     var(--c360-coral)  100%
   );
+  --grad-spectrum-soft: radial-gradient(
+    120% 80% at 20% 30%, var(--c360-violet) 0%, transparent 60%),
+    radial-gradient(120% 80% at 80% 30%, var(--c360-teal) 0%, transparent 60%),
+    radial-gradient(120% 80% at 30% 90%, var(--c360-coral) 0%, transparent 60%),
+    radial-gradient(120% 80% at 90% 90%, var(--c360-blue-2) 0%, transparent 60%);
 
-  /* ── Type families ────────────────────────────────────────── */
+  /* ── Type: families ──────────────────────────────────────────── */
   --font-display: "NATIVE Pro Wide", "NATIVE Pro", "Arial Black", sans-serif;
-  --font-body:    "Graphik", "Inter", system-ui, -apple-system, sans-serif;
+  --font-display-narrow: "NATIVE Pro Narrow", "NATIVE Pro", "Arial Narrow", sans-serif;
+  --font-display-reg: "NATIVE Pro", "Arial Black", sans-serif;
+  --font-body: "Graphik", "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
 
-  /* ── Line-heights ─────────────────────────────────────────── */
-  --lh-tight:  0.9;
-  --lh-body:   1.5;
+  /* ── Type: scale ─────────────────────────────────────────────── */
+  /* Display (NATIVE Pro Wide Ultra) — used for ad headlines & hero */
+  --fs-display-xl: 192px;   /* mega ad headline */
+  --fs-display-l:  150px;
+  --fs-display-m:  100px;
+  --fs-display-s:   72px;   /* Meta ad headline ≈ 72px on 1080w */
+  --fs-display-xs:  56.89px;/* sub-claim "Get there with" */
+  --fs-display-xxs: 48px;
 
-  /* ── Radii ────────────────────────────────────────────────── */
-  --radius-xs: 4px;
-  --radius-sm: 8px;
+  /* Headings (NATIVE Pro / Graphik depending on context) */
+  --fs-h1: 60px;
+  --fs-h2: 48px;
+  --fs-h3: 32px;
+  --fs-h4: 28.13px;
+  --fs-h5: 24px;
+  --fs-h6: 18px;
+
+  /* Body (Graphik) */
+  --fs-body-lg: 18px;
+  --fs-body:    16px;
+  --fs-body-sm: 14.4px;
+  --fs-caption: 11.52px;
+
+  /* Line-heights */
+  --lh-tight:  0.9;   /* display headlines (Native Pro Wide Ultra) */
+  --lh-snug:   1.1;
+  --lh-normal: 1.4;   /* small caption */
+  --lh-body:   1.5;   /* default Graphik */
+
+  /* Letter spacing */
+  --tracking-tight:  -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:    0.04em;
+
+  /* ── Logo minimum sizing (Brand Identity Guidelines v1.0) ─────
+     Establishes minimum heights so logo impact and legibility
+     are not compromised in application. */
+  --logo-signet-min-digital:   5px;     /* 2mm in print */
+  --logo-twoliner-min-digital: 8.5px;   /* 3mm in print */
+  --logo-oneliner-min-digital: 11px;    /* 4mm in print */
+  --logo-product-min-digital:  11px;    /* core/expansion product logos: 4mm in print */
+
+  /* Safe-margin (clearspace) tokens — multiples of the logo's own thickness X.
+     Use these as the inner padding around any logo placement. */
+  --logo-clearspace-signet:   1;        /* 1× thickness; below 5mm use width */
+  --logo-clearspace-twoliner: 3;        /* 3× width of letter "I" */
+  --logo-clearspace-oneliner: 3;        /* 3× width of letter "I" */
+  --logo-clearspace-product:  3;        /* 3× thickness */
+
+  /* Endorsement (partner-logo) gutters */
+  --logo-endorsement-signet:    2;      /* 2× signet width */
+  --logo-endorsement-wordmark:  1;      /* 1× width of word "Native" */
+
+  /* ── Type sizing rules (Brand Identity Guidelines v1.0) ───────
+     NATIVE Pro headline leading guidance — values are line-height (px)
+     for a 160pt / 112px display headline. Scale proportionally. */
+  --leading-display-tight:  120;        /* short ALL-CAPS headlines */
+  --leading-display-snug:   125;        /* short ALL-CAPS, looser */
+  --leading-display-mixed:  140;        /* mixed-case display copy */
+  --leading-display-loose:  150;        /* longer mixed-case headlines */
+
+  /* ALL-CAPS headlines: keep between 4 and 8 words. Never for long-reads. */
+  --display-allcaps-min-words: 4;
+  --display-allcaps-max-words: 8;
+
+  /* ── Spacing ─────────────────────────────────────────────────── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;   /* section padding y, the canonical NI value */
+  --space-10:128px;
+
+  --container-max: 1920px;
+  --container-pad: 480px;  /* desktop hero gutter (1920w) */
+  --container-pad-md: 224px;
+
+  /* ── Radii ───────────────────────────────────────────────────── */
+  --radius-xs: 4px;    /* buttons */
+  --radius-sm: 8px;    /* cards, plan-selector */
+  --radius-md: 12px;
+  --radius-lg: 24px;   /* "You save" pill */
   --radius-pill: 999px;
+
+  /* ── Shadows / elevation ─────────────────────────────────────── */
+  /* NI uses very restrained elevation — flat, hairline borders. */
+  --shadow-none: none;
+  --shadow-sm:  0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.06);
+  --shadow-lg:  0 12px 40px rgba(0,0,0,0.10);
+  --ring-focus: 0 0 0 2px rgb(89,158,238);
+
+  /* ── Motion ──────────────────────────────────────────────────── */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast:   120ms;
+  --dur-base:   200ms;
+  --dur-slow:   320ms;
 }
 
-/* Element resets */
-.ad-stage, .ad-stage * { box-sizing: border-box; }
+/* ── Semantic element resets ─────────────────────────────────── */
+html, body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--color-fg);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--fs-display-s);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-fg);
+  margin: 0;
+}
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+h3, .h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+  margin: 0;
+}
+h4, .h4 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-body);
+  margin: 0;
+}
+h5, .h5 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-h5);
+  line-height: var(--lh-body);
+  margin: 0;
+}
+h6, .h6 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-h6);
+  line-height: var(--lh-body);
+  margin: 0;
+}
+
+p, .body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--color-fg);
+  margin: 0;
+}
+.caption, small {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-normal);
+  color: var(--color-fg-muted);
+}
+
+/* Display utility — the giant ad headline */
+.display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--fs-display-s);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  text-transform: none;       /* shapes do the work, not uppercase */
+}
+.display--xl { font-size: var(--fs-display-xl); }
+.display--l  { font-size: var(--fs-display-l);  }
+.display--m  { font-size: var(--fs-display-m);  }
+.display--s  { font-size: var(--fs-display-s);  }
+.display--xs { font-size: var(--fs-display-xs); }
+.display--narrow { font-family: var(--font-display-narrow); }
+
+/* Save badge (Plan-selector) */
+.savings-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--color-success);
+  color: var(--color-success);
+  border-radius: var(--radius-lg);
+  padding: 2px 8px;
+  font-family: var(--font-body); font-weight: 500;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-normal);
+}
