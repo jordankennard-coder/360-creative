@@ -2,249 +2,275 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>NI 360 — Approach C: Named Producer Credibility</title>
+<title>NI 360 — Approach C: Named producer credibility</title>
+<link rel="stylesheet" href="../design-system/tokens.css">
+<link rel="stylesheet" href="../design-system/ad-shell.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-  :root {
-    --bg: #080C14;
-    --surface: #0F1520;
-    --surface-2: #151E2E;
-    --accent: #E9383F;
-    --star: #F5C518;
-    --text: #FFFFFF;
-    --text-muted: #B8C2CE;
-    --text-dim: #6A7685;
-    --border: #1E2E44;
+  /* ── Approach C: photo-backed testimonial ──────────────────── */
+  .ad.approach-c {
+    background: var(--ni-black);
+    color: var(--ni-paper);
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; }
-  body { background: #1C1C22; color: var(--text); padding: 40px 20px; min-height: 100vh; }
-  h1.page-title { font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; color: #999; margin-bottom: 24px; text-align: center; }
-  .gallery { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; align-items: flex-start; }
-  .ad-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-  .ad-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.08em; }
-  .download-btn {
-    background: var(--accent); color: white;
-    font: 700 11px 'Inter', sans-serif; letter-spacing: 0.04em;
-    padding: 8px 14px; border: none; border-radius: 5px; cursor: pointer;
-    text-transform: uppercase; transition: opacity 0.15s;
-  }
-  .download-btn:hover { opacity: 0.85; }
-  .download-btn:disabled { opacity: 0.5; cursor: wait; }
-
-  .ad { background: var(--bg); color: var(--text); position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.5); display: flex; flex-direction: column; }
-  .ad-4x5 { width: 432px; height: 540px; }
-  .ad-1x1 { width: 432px; height: 432px; }
-  .ad-9x16 { width: 324px; height: 576px; }
-
-  .brand-bar { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px 0; }
-  .brand-logo { font-weight: 800; font-size: 13px; letter-spacing: 0.08em; }
-  .brand-logo .accent { color: var(--accent); }
-  .source-pill { font-size: 9px; font-weight: 600; color: var(--text-dim); padding: 3px 7px; border: 1px solid var(--border); border-radius: 8px; letter-spacing: 0.04em; }
-
-  .hero { position: relative; flex: 1; display: flex; align-items: stretch; min-height: 180px; }
-  .hero-image {
-    flex: 1;
+  .ad.approach-c .photo-bg {
+    position: absolute;
+    inset: 0;
     background-size: cover;
     background-position: center;
-    background-color: #222;
-    position: relative;
+    background-color: #1a1a1a;
+    z-index: 0;
   }
-  .hero-image::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,12,20,0.1), rgba(8,12,20,0.9)); }
-
-  .quote-block { padding: 16px 20px 10px; }
-  .stars { display: flex; gap: 3px; margin-bottom: 8px; }
-  .star { color: var(--star); font-size: 13px; }
-  .quote { font-size: 17px; font-weight: 700; line-height: 1.25; letter-spacing: -0.005em; color: var(--text); }
-  .quote .accent { color: var(--accent); }
-  .attribution { margin-top: 8px; font-size: 11px; color: var(--text-muted); line-height: 1.4; }
-  .attribution strong { color: var(--text); }
-  .credits { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
-
-  .plugin-pills { display: flex; gap: 4px; padding: 4px 20px 0; flex-wrap: wrap; }
-  .plugin-pill {
-    font-size: 9px;
-    font-weight: 600;
-    color: var(--text-muted);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 4px 8px;
-    border-radius: 10px;
-    letter-spacing: 0.02em;
+  /* dark scrim — top bias for top label, bottom bias for quote/cta */
+  .ad.approach-c::before {
+    background: linear-gradient(
+      180deg,
+      rgba(0,0,0,0.55) 0%,
+      rgba(0,0,0,0.20) 35%,
+      rgba(0,0,0,0.55) 70%,
+      rgba(0,0,0,0.85) 100%
+    );
   }
 
-  .cta-block { padding: 12px 20px 18px; margin-top: auto; }
-  .cta-row { display: flex; gap: 8px; align-items: center; }
-  .cta-button { background: var(--accent); color: white; font-weight: 700; font-size: 12px; padding: 10px 14px; border-radius: 6px; flex: 1; text-align: center; }
-  .price-pill { background: var(--surface); border: 1px solid var(--border); color: var(--text); font-weight: 600; font-size: 11px; padding: 8px 12px; border-radius: 6px; white-space: nowrap; }
-  .price-pill .tier-label { color: var(--text-dim); font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em; display: block; }
-  .fineprint { font-size: 9px; color: var(--text-dim); margin-top: 6px; }
+  /* Quote replaces the headline anatomy slot.
+     Use NATIVE Pro Wide REGULAR (not Ultra) — quotes need readability. */
+  .ad.approach-c .quote {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--ni-white);
+    margin: 0;
+    text-transform: none;
+  }
+  .ad.approach-c .stars {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .ad.approach-c .stars-row {
+    color: var(--ni-white);
+    font-size: 14px;
+    letter-spacing: 0;
+  }
+  .ad.approach-c .stars-source {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    margin-left: 8px;
+  }
+  .ad.approach-c .attribution {
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: rgba(255,255,255,0.92);
+    font-size: 12px;
+    line-height: 1.4;
+    margin-top: 12px;
+  }
+  .ad.approach-c .attribution .name {
+    font-weight: 500;
+    color: var(--ni-white);
+  }
+  .ad.approach-c .credits {
+    font-family: var(--font-body);
+    font-size: 10px;
+    color: rgba(255,255,255,0.65);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+  .ad.approach-c .plugin-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 14px 0 16px;
+  }
+  .ad.approach-c .plugin-pill {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ni-white);
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.45);
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0;
+  }
+  .ad.approach-c .label-pill {
+    border-color: rgba(255,255,255,0.45);
+    color: var(--ni-white);
+  }
+  .ad.approach-c .cta {
+    background: var(--ni-paper);
+    color: var(--ni-ink);
+  }
 
-  .ad-9x16 .brand-bar { padding-top: 50px; }
-  .ad-9x16 .cta-block { padding-bottom: 100px; }
-  .ad-9x16 .quote { font-size: 16px; }
-  .ad-9x16 .hero { min-height: 220px; }
+  /* per-ratio quote sizing */
+  .ad-1x1.approach-c  .quote { font-size: 28px; }
+  .ad-4x5.approach-c  .quote { font-size: 26px; }
+  .ad-9x16.approach-c .quote { font-size: 22px; }
 
-  .ad-1x1 .quote { font-size: 15px; }
-
-  .instructions { max-width: 900px; margin: 0 auto 32px; background: #222; border: 1px solid #333; padding: 20px; border-radius: 8px; font-size: 13px; line-height: 1.6; color: #ddd; }
-  .instructions h2 { font-size: 14px; margin-bottom: 8px; color: var(--accent); }
-  .instructions code { background: #111; padding: 2px 6px; border-radius: 3px; color: #8cf; }
-  .instructions .flag { color: #fbb; }
+  /* push quote toward bottom half so the photo dominates */
+  .ad.approach-c .body { justify-content: space-between; }
+  .ad.approach-c .quote-block { margin-top: auto; }
 </style>
 </head>
 <body>
 
+<div class="ad-stage">
+
 <div class="instructions">
-  <h2>Approach C — Named Producer Credibility</h2>
-  <p><strong>To populate:</strong> edit the <code>CONFIG</code> block at the bottom of this file. Drop a producer portrait/studio photo into <code>templates/images/</code>.</p>
-  <p><strong>Legal flags (critical):</strong> <span class="flag">Quote must be attributed, verified, and consented in writing.</span> UGC consent documentation must be on file before ship. Credits listed must be accurate. Star rating must be sourced from a verifiable platform (Trustpilot, G2, Google Reviews) — do NOT fabricate.</p>
-  <p><strong>Required assets:</strong> 1 producer portrait or studio shot, approved quote text, verified credits list (2–3 major records/clients), star rating source + count, list of NI/iZotope/Brainworx plugins the producer named.</p>
+  <h2>Approach C — Named producer credibility</h2>
+  <p><strong>To populate:</strong> edit the <code>CONFIG</code> block below. Drop the producer portrait (or studio shot) into <code>images/</code> next to this file.</p>
+  <p><strong>Legal flags before ship:</strong> the quote has to be attributed, verified, and consented in writing. The credits list has to be accurate. The star rating has to be sourced from a verifiable platform (Trustpilot, G2, Google Reviews) — never fabricated. UGC consent documentation has to be on file before this ad goes live.</p>
+  <p><strong>Brand voice:</strong> sentence case in attribution and supporting copy. The quote itself is verbatim from the producer (do not edit). No exclamation points. No em dashes outside the verbatim quote.</p>
 </div>
 
-<h1 class="page-title">Approach C — Named Producer Credibility · Round 1</h1>
+<h1 class="page-title">Approach C · Named producer credibility</h1>
+<p class="page-lede">Verbatim quote from a credited producer over a portrait. The quote replaces the hero claim. Stars + source bottom-left, NI lockup + CTA bottom-right.</p>
 
 <div class="gallery">
 
   <!-- 4:5 -->
   <div class="ad-wrap">
-    <div class="ad ad-4x5">
-      <div class="brand-bar">
-        <div class="brand-logo">NI <span class="accent">360</span></div>
-        <div class="source-pill" data-bind="star_source"></div>
-      </div>
-      <div class="hero">
-        <div class="hero-image" data-bind-image="producer_photo"></div>
-      </div>
-      <div class="quote-block">
-        <div class="stars" data-bind-stars></div>
-        <div class="quote" data-bind="quote"></div>
-        <div class="attribution"><strong data-bind="producer_name"></strong> · <span data-bind="producer_role"></span></div>
-        <div class="credits" data-bind="producer_credits"></div>
-      </div>
-      <div class="plugin-pills" data-bind-pills></div>
-      <div class="cta-block">
-        <div class="cta-row">
-          <div class="cta-button" data-bind="cta"></div>
-          <div class="price-pill"><span class="tier-label">From</span><span data-bind="price_monthly"></span></div>
+    <div class="ad ad-4x5 approach-c" data-ad="4x5">
+      <div class="photo-bg" data-bind-image="producer_photo"></div>
+      <div class="body">
+        <span class="label-pill" data-bind="label_pill"></span>
+        <div class="quote-block">
+          <div class="stars">
+            <span class="stars-row" data-bind-stars></span>
+            <span class="stars-source" data-bind="star_source"></span>
+          </div>
+          <p class="quote" data-bind="quote"></p>
+          <div class="attribution"><span class="name" data-bind="producer_name"></span> · <span data-bind="producer_role"></span></div>
+          <div class="credits" data-bind="producer_credits"></div>
+          <div class="plugin-pills" data-bind-pills></div>
         </div>
-        <div class="fineprint" data-bind="fineprint"></div>
+        <div class="foot">
+          <div class="lockup">
+            <img src="../design-system/assets/logo-horizontal-white.png" alt="Native Instruments">
+          </div>
+          <button class="cta" data-bind="cta_text"></button>
+        </div>
       </div>
     </div>
     <button class="download-btn" data-ad-idx="0" data-ratio="4x5">Download 1080×1350 PNG</button>
-    <div class="ad-label">4:5 · 1080×1350 · Feed</div>
+    <div class="ad-label">4:5 · 1080×1350 · feed</div>
   </div>
 
   <!-- 1:1 -->
   <div class="ad-wrap">
-    <div class="ad ad-1x1">
-      <div class="brand-bar">
-        <div class="brand-logo">NI <span class="accent">360</span></div>
-        <div class="source-pill" data-bind="star_source"></div>
-      </div>
-      <div class="quote-block" style="padding-top: 14px;">
-        <div class="stars" data-bind-stars></div>
-        <div class="quote" data-bind="quote"></div>
-        <div class="attribution"><strong data-bind="producer_name"></strong> · <span data-bind="producer_role"></span></div>
-        <div class="credits" data-bind="producer_credits"></div>
-      </div>
-      <div class="plugin-pills" data-bind-pills></div>
-      <div class="cta-block">
-        <div class="cta-row">
-          <div class="cta-button" data-bind="cta"></div>
-          <div class="price-pill"><span class="tier-label">From</span><span data-bind="price_monthly"></span></div>
+    <div class="ad ad-1x1 approach-c" data-ad="1x1">
+      <div class="photo-bg" data-bind-image="producer_photo"></div>
+      <div class="body">
+        <span class="label-pill" data-bind="label_pill"></span>
+        <div class="quote-block">
+          <div class="stars">
+            <span class="stars-row" data-bind-stars></span>
+            <span class="stars-source" data-bind="star_source"></span>
+          </div>
+          <p class="quote" data-bind="quote_short"></p>
+          <div class="attribution"><span class="name" data-bind="producer_name"></span> · <span data-bind="producer_role"></span></div>
+          <div class="credits" data-bind="producer_credits"></div>
         </div>
-        <div class="fineprint" data-bind="fineprint"></div>
+        <div class="foot">
+          <div class="lockup">
+            <img src="../design-system/assets/logo-horizontal-white.png" alt="Native Instruments">
+          </div>
+          <button class="cta" data-bind="cta_text"></button>
+        </div>
       </div>
     </div>
     <button class="download-btn" data-ad-idx="1" data-ratio="1x1">Download 1080×1080 PNG</button>
-    <div class="ad-label">1:1 · 1080×1080 · Feed fallback</div>
+    <div class="ad-label">1:1 · 1080×1080 · feed fallback</div>
   </div>
 
   <!-- 9:16 -->
   <div class="ad-wrap">
-    <div class="ad ad-9x16">
-      <div class="brand-bar">
-        <div class="brand-logo">NI <span class="accent">360</span></div>
-        <div class="source-pill" data-bind="star_source"></div>
-      </div>
-      <div class="hero">
-        <div class="hero-image" data-bind-image="producer_photo"></div>
-      </div>
-      <div class="quote-block">
-        <div class="stars" data-bind-stars></div>
-        <div class="quote" data-bind="quote"></div>
-        <div class="attribution"><strong data-bind="producer_name"></strong> · <span data-bind="producer_role"></span></div>
-        <div class="credits" data-bind="producer_credits"></div>
-      </div>
-      <div class="plugin-pills" data-bind-pills></div>
-      <div class="cta-block">
-        <div class="cta-row">
-          <div class="cta-button" data-bind="cta"></div>
-          <div class="price-pill"><span class="tier-label">From</span><span data-bind="price_monthly"></span></div>
+    <div class="ad ad-9x16 approach-c" data-ad="9x16">
+      <div class="photo-bg" data-bind-image="producer_photo"></div>
+      <div class="body">
+        <span class="label-pill" data-bind="label_pill"></span>
+        <div class="quote-block">
+          <div class="stars">
+            <span class="stars-row" data-bind-stars></span>
+            <span class="stars-source" data-bind="star_source"></span>
+          </div>
+          <p class="quote" data-bind="quote_short"></p>
+          <div class="attribution"><span class="name" data-bind="producer_name"></span> · <span data-bind="producer_role"></span></div>
+          <div class="credits" data-bind="producer_credits"></div>
+          <div class="plugin-pills" data-bind-pills></div>
         </div>
-        <div class="fineprint" data-bind="fineprint"></div>
+        <div class="foot">
+          <div class="lockup">
+            <img src="../design-system/assets/logo-horizontal-white.png" alt="Native Instruments">
+          </div>
+          <button class="cta" data-bind="cta_text"></button>
+        </div>
       </div>
     </div>
     <button class="download-btn" data-ad-idx="2" data-ratio="9x16">Download 1080×1920 PNG</button>
-    <div class="ad-label">9:16 · 1080×1920 · Stories / Reels</div>
+    <div class="ad-label">9:16 · 1080×1920 · stories &amp; reels</div>
   </div>
 
+</div>
 </div>
 
 <script>
   // ============================================================
   //  EDIT THIS BLOCK TO POPULATE THE AD
-  //  NOTE: every field below needs legal / consent sign-off
+  //  All producer fields require artist-relations sign-off
+  //  AND legal sign-off before go-live. Quote is verbatim.
   // ============================================================
   const CONFIG = {
-    // ===== PRODUCER ASSETS =====
-    // ALL FIELDS IN THIS SECTION ARE TBD — require artist relations to secure + legal consent
-    producer_photo: 'images/producer_portrait.jpg',   // TBD
-    quote: '"I use <span class="accent">Kontakt</span> on every session and <span class="accent">Massive X</span> on half of them. NI 360 paid for itself the first week."',  // TBD — draft; real quote needed
-    producer_name: '[TBD — Producer Name]',
-    producer_role: 'Producer · Mix Engineer',
-    producer_credits: 'Credits: [TBD — 3 verified credits]',
-    plugins_used: ['Kontakt 8', 'Massive X', 'Ozone 11', 'Guitar Rig 7'],
+    // Top label pill — usually 14-day free trial or audience cue
+    label_pill: "14-day free trial",
 
-    // ===== STAR RATING =====
-    // LEGAL FLAG: source must be verifiable (Trustpilot / G2 / Google Reviews). Do NOT fabricate.
+    // Producer photo (drop file into ./images/ next to this template)
+    producer_photo: "images/producer_portrait.jpg",
+
+    // The verbatim quote — DO NOT edit punctuation or word choice.
+    // Long version (4:5).
+    quote: "I use Kontakt on every session. Massive X on half of them. 360 pays for itself the first week.",
+    // Short version (1:1, 9:16) — pick the most credibility-loaded sentence.
+    quote_short: "Kontakt on every session. Massive X on half. 360 pays for itself the first week.",
+
+    // Attribution
+    producer_name:    "[TBD — producer name]",
+    producer_role:    "Producer, mix engineer",
+    producer_credits: "Credits: [TBD — three verified credits]",
+
+    // Plugins the producer specifically named (only what they actually said)
+    plugins_used: ["Kontakt 8", "Massive X", "Ozone 11", "Guitar Rig"],
+
+    // Star rating — MUST be from a verifiable source
     star_count: 5,
-    star_source: '[TBD — Trustpilot rating + review count]',
+    star_source: "Trustpilot · 4.6 / 5",
 
-    // ===== CTA + PRICE =====
-    cta: 'Start your 14-day trial',
-    price_monthly: '$15/mo',
+    // CTA
+    cta_text: "Try free",
 
-    // ===== FINE PRINT =====
-    fineprint: 'Billed monthly after trial · Cancel anytime · Existing licences stay yours',
+    // Meta primary text
+    description: "[TBD — producer quote, one or two sentences, names specific NI tools.] · [TBD — producer name], [credits]. Kontakt, Massive X, Ozone, and 150+ more in 360, from $12.50 a month. Try it free for 14 days.",
 
-    // ===== AD DESCRIPTION FIELD (Meta primary text) =====
-    description: "\"[TBD — producer quote, 1–2 sentences, mentioning specific NI tools]\" — [TBD — producer name], [credits]. Kontakt, Massive X, Ozone and 50+ more for $15/mo. Try free for 14 days.",
-
-    // ===== EXPORT SETTINGS =====
-    approach_id: 'C',
-    audience_id: 'broadtrial',
-    round_id: 'R1',
+    // Export naming
+    approach_id: "C",
+    audience_id: "broadtrial",
+    round_id: "R1",
   };
   // ============================================================
 
   function render() {
     document.querySelectorAll('[data-bind]').forEach(el => {
       const key = el.getAttribute('data-bind');
-      if (CONFIG[key] !== undefined) el.innerHTML = CONFIG[key];
+      if (CONFIG[key] !== undefined) el.textContent = CONFIG[key];
     });
     document.querySelectorAll('[data-bind-image]').forEach(el => {
       const key = el.getAttribute('data-bind-image');
       if (CONFIG[key]) el.style.backgroundImage = `url('${CONFIG[key]}')`;
     });
     document.querySelectorAll('[data-bind-stars]').forEach(el => {
-      el.innerHTML = '';
-      for (let i = 0; i < CONFIG.star_count; i++) {
-        const s = document.createElement('span');
-        s.className = 'star';
-        s.textContent = '★';
-        el.appendChild(s);
-      }
+      el.textContent = '★'.repeat(CONFIG.star_count);
     });
     document.querySelectorAll('[data-bind-pills]').forEach(el => {
       el.innerHTML = CONFIG.plugins_used.map(p => `<span class="plugin-pill">${p}</span>`).join('');
@@ -255,7 +281,7 @@
   // ===== PNG export (html2canvas) =====
   const SCALE_FOR = {
     '4x5':  1080 / 432,
-    '1x1':  1080 / 432,
+    '1x1':  1080 / 540,
     '9x16': 1080 / 324,
   };
   document.querySelectorAll('.download-btn').forEach(btn => {

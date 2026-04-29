@@ -1,0 +1,83 @@
+/* ────────────────────────────────────────────────────────────────
+   NI 360 Ad Framework — design tokens
+   Sourced from "360 by Native Instruments — Design System" skill
+   Slimmed to what the 3 approach templates need.
+   Updates here roll out to all approach templates automatically.
+   ──────────────────────────────────────────────────────────────── */
+
+/* ── Brand fonts ──────────────────────────────────────────────── */
+@font-face {
+  font-family: "NATIVE Pro Wide";
+  src: url("./fonts/NATIVEPro-WideUltra.otf") format("opentype");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "NATIVE Pro Wide";
+  src: url("./fonts/NATIVEPro-WideRegular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "NATIVE Pro";
+  src: url("./fonts/NATIVEPro-Ultra.otf") format("opentype");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("./fonts/Graphik-Regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("./fonts/Graphik-Medium.otf") format("opentype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("./fonts/Graphik-Semibold.otf") format("opentype");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* ── Core neutrals ────────────────────────────────────────── */
+  --ni-black:        rgb(0, 0, 0);
+  --ni-ink:          rgb(22, 24, 25);
+  --ni-ink-3:        rgb(7, 11, 16);
+  --ni-white:        rgb(255, 255, 255);
+  --ni-paper:        rgb(248, 249, 250);
+  --ni-gray-600:     rgb(96, 103, 112);
+  --ni-gray-400:     rgb(190, 195, 201);
+  --ni-gray-300:     rgb(218, 221, 225);  /* hairline border */
+  --ni-gray-150:     rgb(238, 240, 242);
+  --ni-gray-50:      rgb(248, 249, 250);
+
+  /* ── 360 spectrum trio ────────────────────────────────────── */
+  --c360-coral:      rgb(255, 120, 95);
+  --c360-teal:       rgb(0, 150, 135);
+  --c360-violet:     rgb(157, 92, 221);
+  --c360-blue-2:     rgb(89, 158, 238);
+
+  /* ── Signature gradient ───────────────────────────────────── */
+  --grad-spectrum: linear-gradient(
+    115deg,
+    var(--c360-violet)   0%,
+    var(--c360-blue-2)  35%,
+    var(--c360-teal)    70%,
+    var(--c360-coral)  100%
+  );
+
+  /* ── Type families ────────────────────────────────────────── */
+  --font-display: "NATIVE Pro Wide", "NATIVE Pro", "Arial Black", sans-serif;
+  --font-body:    "Graphik", "Inter", system-ui, -apple-system, sans-serif;
+
+  /* ── Line-heights ─────────────────────────────────────────── */
+  --lh-tight:  0.9;
+  --lh-body:   1.5;
+
+  /* ── Radii ────────────────────────────────────────────────── */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-pill: 999px;
+}
+
+/* Element resets */
+.ad-stage, .ad-stage * { box-sizing: border-box; }

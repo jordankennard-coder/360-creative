@@ -3,303 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <title>NI 360 — Approach A: Pro Toolkit Stack</title>
+<link rel="stylesheet" href="../design-system/tokens.css">
+<link rel="stylesheet" href="../design-system/ad-shell.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-  :root {
-    --bg: #080C14;
-    --surface: #0F1520;
-    --surface-2: #151E2E;
-    --accent: #E9383F;
-    --text: #FFFFFF;
-    --text-muted: #B8C2CE;
-    --text-dim: #6A7685;
-    --border: #1E2E44;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; }
-  body { background: #1C1C22; color: var(--text); padding: 40px 20px; min-height: 100vh; }
-  h1.page-title { font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; color: #999; margin-bottom: 24px; text-align: center; }
-  .gallery { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; align-items: flex-start; }
-  .ad-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-  .ad-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.08em; }
-  .download-btn {
-    background: var(--accent);
-    color: white;
-    font: 700 11px 'Inter', sans-serif;
-    letter-spacing: 0.04em;
-    padding: 8px 14px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: opacity 0.15s;
-  }
-  .download-btn:hover { opacity: 0.85; }
-  .download-btn:disabled { opacity: 0.5; cursor: wait; }
-
-  /* Base ad card */
-  .ad {
-    background: var(--bg);
-    color: var(--text);
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Aspect ratio canvases */
-  .ad-4x5 { width: 432px; height: 540px; }   /* 1080x1350 @ 40% */
-  .ad-1x1 { width: 432px; height: 432px; }   /* 1080x1080 @ 40% */
-  .ad-9x16 { width: 324px; height: 576px; }  /* 1080x1920 @ 30% */
-
-  /* Top header: NI 360 logo + tier pill */
-  .brand-bar { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px 0; }
-  .brand-logo { font-weight: 800; font-size: 13px; letter-spacing: 0.08em; }
-  .brand-logo .accent { color: var(--accent); }
-  .tier-pill { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); padding: 4px 8px; border: 1px solid var(--border); border-radius: 10px; }
-
-  /* Hero: plugin UI grid */
-  .plugin-grid {
+  /* ── Approach A specifics: product art row on dark bg ──────── */
+  .ad.approach-a .product-row {
     flex: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 6px;
-    padding: 16px 20px;
-  }
-  .plugin-grid.grid-2x2 { grid-template-rows: 1fr 1fr; }
-  .plugin-tile {
-    background: linear-gradient(145deg, var(--surface), var(--surface-2));
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 10px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-size: cover;
-    background-position: center;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 24px 0;
     position: relative;
-    overflow: hidden;
   }
-  .plugin-tile::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,12,20,0.1), rgba(8,12,20,0.85)); }
-  .plugin-tile-label { font-size: 10px; font-weight: 600; color: var(--text); letter-spacing: 0.04em; position: relative; z-index: 1; text-shadow: 0 1px 2px rgba(0,0,0,0.6); }
-  .plugin-tile-sub { font-size: 8px; color: var(--text-dim); position: relative; z-index: 1; margin-top: auto; }
-
-  /* Headline block */
-  .headline-block { padding: 12px 20px 4px; }
-  .headline {
-    font-size: 26px;
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
+  .ad.approach-a .product-row img {
+    width: 28%;
+    aspect-ratio: 1;
+    object-fit: contain;
+    margin: 0 -8px;
+    filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35));
   }
-  .headline .accent { color: var(--accent); }
-  .sub { font-size: 12px; color: var(--text-muted); margin-top: 6px; line-height: 1.4; }
+  .ad.approach-a .product-row img:nth-child(2) { transform: translateY(-12px) scale(1.1); }
+  .ad.approach-a .product-row img:nth-child(4) { transform: translateY(-12px) scale(1.05); }
 
-  /* CTA block */
-  .cta-block { padding: 12px 20px 18px; margin-top: auto; }
-  .cta-row { display: flex; gap: 8px; align-items: center; }
-  .cta-button {
-    background: var(--accent);
-    color: white;
-    font-weight: 700;
-    font-size: 12px;
-    padding: 10px 14px;
-    border-radius: 6px;
-    text-transform: none;
-    flex: 1;
-    text-align: center;
+  .ad-1x1.approach-a  .product-row img { width: 30%; }
+  .ad-9x16.approach-a .product-row { flex-direction: row; flex-wrap: wrap; }
+  .ad-9x16.approach-a .product-row img { width: 42%; margin: -6px; }
+
+  .ad.approach-a .price-line {
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    font-size: 13px;
+    margin-top: 4px;
+    letter-spacing: 0;
   }
-  .price-pill {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-weight: 600;
-    font-size: 11px;
-    padding: 8px 12px;
-    border-radius: 6px;
-    white-space: nowrap;
-  }
-  .price-pill .tier-label { color: var(--text-dim); font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em; display: block; }
-  .fineprint { font-size: 9px; color: var(--text-dim); margin-top: 6px; }
-
-  /* 9:16 specific — safe zones */
-  .ad-9x16 .brand-bar { padding-top: 50px; }   /* top 250/1920 ~= 13% safe zone */
-  .ad-9x16 .cta-block { padding-bottom: 100px; } /* bottom 340/1920 ~= 18% safe zone */
-  .ad-9x16 .headline { font-size: 22px; }
-
-  /* 1:1 specific — tighter */
-  .ad-1x1 .plugin-grid { grid-template-rows: 1fr 1fr; }
-  .ad-1x1 .headline { font-size: 22px; }
-
-  /* Instructions overlay at top */
-  .instructions { max-width: 900px; margin: 0 auto 32px; background: #222; border: 1px solid #333; padding: 20px; border-radius: 8px; font-size: 13px; line-height: 1.6; color: #ddd; }
-  .instructions h2 { font-size: 14px; margin-bottom: 8px; color: var(--accent); }
-  .instructions code { background: #111; padding: 2px 6px; border-radius: 3px; color: #8cf; }
 </style>
 </head>
 <body>
 
+<div class="ad-stage">
+
 <div class="instructions">
-  <h2>Approach A — Pro Toolkit Stack</h2>
-  <p><strong>To populate:</strong> edit the <code>CONFIG</code> block inside the <code>&lt;script&gt;</code> at the bottom of this file. Drop your plugin UI screenshots into <code>templates/images/</code>. Reload the page to preview. Screenshot each aspect ratio for Smartly.</p>
-  <p><strong>Required assets:</strong> 6 plugin UI screenshots (Kontakt, Massive X, Guitar Rig, Ozone, Neutron, Battery — or swap to your featured plugins), NI 360 red logomark, optional producer studio hero.</p>
+  <h2>Approach A — Pro toolkit stack</h2>
+  <p><strong>To populate:</strong> edit the <code>CONFIG</code> block inside the <code>&lt;script&gt;</code> at the bottom of this file. Pick 4 product slugs from <code>../design-system/assets/products/</code>. Reload to preview. Click <em>Download PNG</em> to export each ratio.</p>
+  <p><strong>Brand voice:</strong> sentence case, no em dashes (use en dash with spaces), no exclamation points, no clichés (<em>elevate, supercharge, unleash</em>). The full rules live in <code>../../../360 by Native Instruments — Design System/uploads/style-guide.txt</code>.</p>
 </div>
 
-<h1 class="page-title">Approach A — Pro Toolkit Stack · Round 1</h1>
+<h1 class="page-title">Approach A · Pro toolkit stack</h1>
+<p class="page-lede">Show the actual tools pros use. Credibility via specificity. Default variant is solid black with product art across the middle.</p>
 
 <div class="gallery">
 
   <!-- 4:5 -->
   <div class="ad-wrap">
-    <div class="ad ad-4x5" data-ad="4x5">
-      <div class="brand-bar">
-        <div class="brand-logo">NI <span class="accent">360</span></div>
-        <div class="tier-pill" data-bind="tier">Essentials · Plus · Pro</div>
-      </div>
-      <div class="plugin-grid" data-bind-grid="6"></div>
-      <div class="headline-block">
-        <div class="headline" data-bind="headline"></div>
-        <div class="sub" data-bind="subhead"></div>
-      </div>
-      <div class="cta-block">
-        <div class="cta-row">
-          <div class="cta-button" data-bind="cta"></div>
-          <div class="price-pill"><span class="tier-label">From</span><span data-bind="price_monthly"></span></div>
+    <div class="ad ad-4x5 approach-a dark" data-ad="4x5">
+      <div class="body">
+        <span class="label-pill" data-bind="label_pill"></span>
+        <h2 class="headline" data-bind="headline"></h2>
+        <p class="sub" data-bind="subhead"></p>
+        <div class="product-row" data-bind-products></div>
+        <div class="foot">
+          <div class="lockup">
+            <img src="../design-system/assets/logo-horizontal-white.png" alt="Native Instruments">
+          </div>
+          <button class="cta" data-bind="cta_text"></button>
         </div>
-        <div class="fineprint" data-bind="fineprint"></div>
       </div>
     </div>
     <button class="download-btn" data-ad-idx="0" data-ratio="4x5">Download 1080×1350 PNG</button>
-    <div class="ad-label">4:5 · 1080×1350 · Feed</div>
+    <div class="ad-label">4:5 · 1080×1350 · feed</div>
   </div>
 
   <!-- 1:1 -->
   <div class="ad-wrap">
-    <div class="ad ad-1x1" data-ad="1x1">
-      <div class="brand-bar">
-        <div class="brand-logo">NI <span class="accent">360</span></div>
-        <div class="tier-pill" data-bind="tier">Essentials · Plus · Pro</div>
-      </div>
-      <div class="plugin-grid grid-2x2" data-bind-grid="4"></div>
-      <div class="headline-block">
-        <div class="headline" data-bind="headline"></div>
-      </div>
-      <div class="cta-block">
-        <div class="cta-row">
-          <div class="cta-button" data-bind="cta"></div>
-          <div class="price-pill"><span class="tier-label">From</span><span data-bind="price_monthly"></span></div>
+    <div class="ad ad-1x1 approach-a dark" data-ad="1x1">
+      <div class="body">
+        <span class="label-pill" data-bind="label_pill"></span>
+        <h2 class="headline" data-bind="headline"></h2>
+        <p class="sub" data-bind="subhead"></p>
+        <div class="product-row" data-bind-products></div>
+        <div class="foot">
+          <div class="lockup">
+            <img src="../design-system/assets/logo-horizontal-white.png" alt="Native Instruments">
+          </div>
+          <button class="cta" data-bind="cta_text"></button>
         </div>
-        <div class="fineprint" data-bind="fineprint"></div>
       </div>
     </div>
     <button class="download-btn" data-ad-idx="1" data-ratio="1x1">Download 1080×1080 PNG</button>
-    <div class="ad-label">1:1 · 1080×1080 · Feed fallback</div>
+    <div class="ad-label">1:1 · 1080×1080 · feed fallback</div>
   </div>
 
   <!-- 9:16 -->
   <div class="ad-wrap">
-    <div class="ad ad-9x16" data-ad="9x16">
-      <div class="brand-bar">
-        <div class="brand-logo">NI <span class="accent">360</span></div>
-        <div class="tier-pill" data-bind="tier">Essentials · Plus · Pro</div>
-      </div>
-      <div class="plugin-grid" data-bind-grid="6"></div>
-      <div class="headline-block">
-        <div class="headline" data-bind="headline"></div>
-        <div class="sub" data-bind="subhead"></div>
-      </div>
-      <div class="cta-block">
-        <div class="cta-row">
-          <div class="cta-button" data-bind="cta"></div>
-          <div class="price-pill"><span class="tier-label">From</span><span data-bind="price_monthly"></span></div>
+    <div class="ad ad-9x16 approach-a dark" data-ad="9x16">
+      <div class="body">
+        <span class="label-pill" data-bind="label_pill"></span>
+        <h2 class="headline" data-bind="headline"></h2>
+        <p class="sub" data-bind="subhead"></p>
+        <div class="product-row" data-bind-products></div>
+        <div class="foot">
+          <div class="lockup">
+            <img src="../design-system/assets/logo-horizontal-white.png" alt="Native Instruments">
+          </div>
+          <button class="cta" data-bind="cta_text"></button>
         </div>
-        <div class="fineprint" data-bind="fineprint"></div>
       </div>
     </div>
     <button class="download-btn" data-ad-idx="2" data-ratio="9x16">Download 1080×1920 PNG</button>
-    <div class="ad-label">9:16 · 1080×1920 · Stories / Reels</div>
+    <div class="ad-label">9:16 · 1080×1920 · stories &amp; reels</div>
   </div>
 
+</div>
 </div>
 
 <script>
   // ============================================================
   //  EDIT THIS BLOCK TO POPULATE THE AD
+  //  Brand voice: sentence case, no em dashes (en dash with spaces),
+  //  no exclamation points, no clichés. Slogan: "Get there with 360."
   // ============================================================
   const CONFIG = {
-    // ===== HEADLINE =====
-    headline: 'The plugins <span class="accent">pros actually use</span>. From $15/mo.',
-    // Alternates held for within-approach rotation once a winner locks:
-    //   'The tools on the records you love. From $15/mo.'
-    //   'Kontakt, Massive X, Ozone — all $15/mo. Yes, really.'
+    // Top label pill — short, factual. Common picks:
+    //   "14-day free trial"
+    //   "From $12.50/mo"
+    //   "150+ instruments"
+    label_pill: "14-day free trial",
 
-    // ===== SUBHEAD =====
-    subhead: 'Kontakt · Massive X · Ozone · Guitar Rig · Battery · Neutron. Real plugins, one subscription. 14-day free trial.',
+    // Headline — NATIVE Pro Wide Ultra. Sentence case. Period at the end.
+    // Alternates held for within-approach rotation:
+    //   "Real plugins. The ones on actual records."
+    //   "The tools you already know, by the month."
+    //   "Kontakt, Massive X, Ozone. From $12.50 a month."
+    headline: "The tools on the records you love.",
 
-    // ===== CTA + PRICE =====
-    cta: 'Start your 14-day trial',
-    price_monthly: '$15/mo',
-    tier: 'Essentials · Plus · Pro',
+    // Sub — Graphik body. One sentence, factual.
+    subhead: "Kontakt 8, Massive X, Ozone 11. Plus 150+ more, in every 360 plan.",
 
-    // ===== FINE PRINT =====
-    fineprint: 'Billed monthly after trial · Cancel anytime · Existing licences stay yours',
+    // CTA — "Try free", "See plans", "Shop now". Two words max.
+    cta_text: "Try free",
 
-    // ===== PLUGIN UI TILES =====
-    // TBD — drop screenshots into templates/images/ matching these filenames
-    plugins: [
-      { name: 'Kontakt 8',     sub: 'Sampler',         image: 'images/kontakt.png' },
-      { name: 'Massive X',     sub: 'Wavetable synth', image: 'images/massive_x.png' },
-      { name: 'Guitar Rig 7',  sub: 'Amp / FX',        image: 'images/guitar_rig.png' },
-      { name: 'Ozone 11',      sub: 'Mastering',       image: 'images/ozone.png' },
-      { name: 'Neutron 5',     sub: 'Mixing',          image: 'images/neutron.png' },
-      { name: 'Battery 4',     sub: 'Drums',           image: 'images/battery.png' },
+    // Product row (3-4 items). Slugs map to ../design-system/assets/products/{slug}.png
+    products: [
+      { name: "Kontakt 8",  slug: "kontakt-8"   },
+      { name: "Massive X",  slug: "massive-x"   },
+      { name: "Ozone 11",   slug: "ozone-11"    },
+      { name: "Guitar Rig", slug: "guitar-rig-7"},
     ],
 
-    // ===== AD DESCRIPTION FIELD (Meta primary text, not overlaid on image) =====
-    // Used when uploading to Smartly — goes in the primary text field:
-    description: "Your existing plugin licences stay yours. NI 360 adds Kontakt 8, Massive X, Guitar Rig Pro, Ozone 11, and 50+ more tools for $15/mo. Try free for 14 days — cancel anytime.",
+    // Meta primary text (the description above the creative — not on the image).
+    description: "Your existing Native Instruments licences stay yours. 360 adds Kontakt 8, Massive X, Ozone 11, and 150+ more tools from $12.50 a month. Try it free for 14 days. Cancel anytime.",
 
-    // ===== EXPORT SETTINGS =====
-    approach_id: 'A',
-    audience_id: 'broadtrial',
-    round_id: 'R1',
+    // Export naming
+    approach_id: "A",
+    audience_id: "broadtrial",
+    round_id: "R1",
   };
   // ============================================================
 
   function render() {
     document.querySelectorAll('[data-bind]').forEach(el => {
       const key = el.getAttribute('data-bind');
-      if (CONFIG[key] !== undefined) el.innerHTML = CONFIG[key];
+      if (CONFIG[key] !== undefined) el.textContent = CONFIG[key];
     });
-    document.querySelectorAll('[data-bind-grid]').forEach(grid => {
-      const count = parseInt(grid.getAttribute('data-bind-grid'), 10);
-      grid.innerHTML = '';
-      for (let i = 0; i < count; i++) {
-        const p = CONFIG.plugins[i] || { name: 'Plugin', sub: '', image: '' };
-        const tile = document.createElement('div');
-        tile.className = 'plugin-tile';
-        if (p.image) tile.style.backgroundImage = `url('${p.image}')`;
-        tile.innerHTML = `
-          <div></div>
-          <div>
-            <div class="plugin-tile-label">${p.name}</div>
-            <div class="plugin-tile-sub">${p.sub}</div>
-          </div>
-        `;
-        grid.appendChild(tile);
-      }
+    document.querySelectorAll('[data-bind-products]').forEach(row => {
+      row.innerHTML = '';
+      CONFIG.products.forEach(p => {
+        const img = document.createElement('img');
+        img.src = `../design-system/assets/products/${p.slug}.png`;
+        img.alt = p.name;
+        row.appendChild(img);
+      });
     });
   }
   render();
 
   // ===== PNG export (html2canvas) =====
   // Preview ads render at ~40% of Meta's required pixel dimensions.
-  // Capture scale per ratio brings output to exact 1080px width / height.
   const SCALE_FOR = {
-    '4x5':  1080 / 432,   // = 2.5  → 1080×1350
-    '1x1':  1080 / 432,   // = 2.5  → 1080×1080
-    '9x16': 1080 / 324,   // ≈ 3.333 → 1080×1920
+    '4x5':  1080 / 432,   // 2.5  → 1080×1350
+    '1x1':  1080 / 540,   // 2    → 1080×1080
+    '9x16': 1080 / 324,   // ~3.33 → 1080×1920
   };
 
   document.querySelectorAll('.download-btn').forEach(btn => {

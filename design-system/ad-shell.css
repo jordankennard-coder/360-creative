@@ -1,0 +1,222 @@
+/* ────────────────────────────────────────────────────────────────
+   NI 360 Ad Framework — shared ad shell
+   The shared anatomy: top label pill, oversized headline,
+   sub, and bottom-corner lockup + CTA. Each approach extends
+   this with its own middle-content block (plugin grid, price
+   comparison, producer quote, etc.).
+   Anatomy lifted from "360 by Native Instruments" skill — ui_kits/ads.
+   ──────────────────────────────────────────────────────────────── */
+
+/* Page-level scaffolding for the populate/preview/export workflow */
+html, body {
+  margin: 0;
+  background: #1C1C22;
+  color: var(--ni-white);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.ad-stage {
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  text-align: center;
+  margin: 0 0 12px;
+  color: var(--ni-white);
+}
+.page-lede {
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  max-width: 640px;
+  margin: 0 auto 28px;
+  line-height: 1.5;
+}
+.gallery {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.ad-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.ad-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+/* The download button — kept utilitarian, not part of the ad itself */
+.download-btn {
+  background: var(--ni-paper);
+  color: var(--ni-ink);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 12px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: opacity 120ms cubic-bezier(0.2,0,0,1);
+}
+.download-btn:hover { opacity: 0.85; }
+.download-btn:disabled { opacity: 0.5; cursor: wait; }
+
+/* Instructions box at top of preview page */
+.instructions {
+  max-width: 900px;
+  margin: 0 auto 32px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 20px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+}
+.instructions h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 18px;
+  margin: 0 0 8px;
+  color: var(--c360-coral);
+  letter-spacing: -0.01em;
+}
+.instructions code {
+  background: rgba(0,0,0,0.4);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  color: rgba(255,255,255,0.95);
+}
+
+/* ── Ad shell ─────────────────────────────────────────────────── */
+.ad {
+  position: relative;
+  overflow: hidden;
+  background: var(--grad-spectrum);
+  color: var(--ni-ink);
+  /* hairline only — no shadow */
+  border: 1px solid rgba(0,0,0,0.04);
+}
+/* Protection gradient — keeps dark display copy legible against the spectrum */
+.ad::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, var(--ni-white) 0%, rgba(255,255,255,0.7) 35%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+.ad .body {
+  position: relative;
+  height: 100%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+.ad .label-pill {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  border: 1px solid var(--ni-gray-400);
+  color: var(--ni-ink);
+  border-radius: var(--radius-pill);
+  padding: 4px 12px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin-bottom: 16px;
+}
+.ad .headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: var(--lh-tight);
+  letter-spacing: -0.02em;
+  color: var(--ni-ink-3);
+  margin: 0;
+  text-transform: none;
+}
+.ad .sub {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--ni-ink);
+  margin: 12px 0 0;
+  line-height: 1.45;
+}
+.ad .foot {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.ad .foot .lockup { display: flex; align-items: center; gap: 12px; }
+.ad .foot .lockup img { height: 24px; display: block; }
+.ad .cta {
+  background: var(--ni-black);
+  color: var(--ni-white);
+  padding: 12px 20px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  border: 0;
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ── Variants ─────────────────────────────────────────────────── */
+.ad.dark { background: var(--ni-black); color: var(--ni-paper); }
+.ad.dark::before { background: linear-gradient(180deg, transparent 0%, transparent 50%, rgba(0,0,0,0.3) 100%); }
+.ad.dark .headline { color: var(--ni-white); }
+.ad.dark .sub { color: rgba(255,255,255,0.85); }
+.ad.dark .label-pill { border-color: rgba(255,255,255,0.45); color: var(--ni-white); }
+.ad.dark .cta { background: var(--ni-paper); color: var(--ni-ink); }
+
+.ad.coral { background: var(--c360-coral); }
+.ad.coral::before { display: none; }
+.ad.coral .headline { color: var(--ni-white); }
+.ad.coral .sub { color: rgba(255,255,255,0.92); }
+.ad.coral .label-pill { border-color: rgba(255,255,255,0.55); color: var(--ni-white); }
+.ad.coral .cta { background: var(--ni-white); color: var(--ni-ink); }
+
+.ad.violet { background: var(--c360-violet); }
+.ad.violet::before { display: none; }
+.ad.violet .headline { color: var(--ni-white); }
+.ad.violet .sub { color: rgba(255,255,255,0.92); }
+.ad.violet .label-pill { border-color: rgba(255,255,255,0.55); color: var(--ni-white); }
+.ad.violet .cta { background: var(--ni-white); color: var(--ni-ink); }
+
+/* ── Sizes ────────────────────────────────────────────────────── */
+.ad-1x1   { width: 540px; height: 540px; }
+.ad-4x5   { width: 432px; height: 540px; }
+.ad-9x16  { width: 324px; height: 576px; }
+
+.ad-1x1  .body { padding: 36px; }
+.ad-4x5  .body { padding: 32px; }
+.ad-9x16 .body { padding: 28px; }
+
+.ad-1x1  .headline { font-size: 60px; }
+.ad-4x5  .headline { font-size: 52px; }
+.ad-9x16 .headline { font-size: 40px; }
+
+.ad-1x1  .sub { font-size: 15px; max-width: 380px; }
+.ad-4x5  .sub { font-size: 14px; max-width: 320px; }
+.ad-9x16 .sub { font-size: 13px; max-width: 240px; }
+
+.ad-9x16 .foot { padding-bottom: 16px; }
