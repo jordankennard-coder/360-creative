@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Round runner · NI 360 Static Ad Framework</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="dot"></span>NI 360 Static Ad Framework</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="round.html" class="active">Round<span class="nav-new">New</span></a>
+      <a href="playbook.html">Playbook</a>
+      <a href="roles.html">Roles</a>
+      <a href="competitor.html">Competitor Queue</a>
+      <a href="templates.html">Templates</a>
+      <a href="results.html">Results History</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="eyebrow">Round 1 &middot; broad trial acquisition</div>
+  <h1>Round runner</h1>
+  <p class="lede">One page, six stages. Top-down: pick the competitors, scan their ads, map the territory, brief the approaches, preview the templates, launch. Built to retire the other tabs once everyone&rsquo;s in here.</p>
+</section>
+
+<nav class="stage-strip" aria-label="Round stages">
+  <a href="#stage-1"><span class="num">1</span>Select competitors</a>
+  <a href="#stage-2"><span class="num">2</span>Start scan</a>
+  <a href="#stage-3"><span class="num">3</span>Scan findings</a>
+  <a href="#stage-4"><span class="num">4</span>Approach briefs</a>
+  <a href="#stage-5"><span class="num">5</span>Template previews</a>
+  <a href="#stage-6"><span class="num">6</span>Launch ads</a>
+</nav>
+
+<!-- ============================================================
+     Stage 1 — select competitors
+     ============================================================ -->
+<section class="stage" id="stage-1">
+  <div class="stage-header">
+    <span class="stage-num">Stage 1</span>
+    <h2>Select competitors</h2>
+    <span class="sub">Who are we attacking this round?</span>
+  </div>
+
+  <div class="competitor-set">
+    <div class="competitor-tile">
+      <h4>Splice</h4>
+      <p class="meta">Sample-based subscription &middot; ~$13/mo</p>
+      <p class="gap">Owns: sound packs &amp; collab. Doesn&rsquo;t claim: pro-grade plugins.</p>
+    </div>
+    <div class="competitor-tile">
+      <h4>LANDR</h4>
+      <p class="meta">Mastering subscription + plugin bundle &middot; ~$15/mo</p>
+      <p class="gap">Owns: AI mastering. Doesn&rsquo;t claim: pro-quality instrument suite.</p>
+    </div>
+    <div class="competitor-tile">
+      <h4>Output</h4>
+      <p class="meta">Cinematic instrument subscription &middot; ~$10/mo</p>
+      <p class="gap">Owns: cinematic / Hollywood TV scoring. Doesn&rsquo;t claim: outright price comparison.</p>
+    </div>
+  </div>
+
+  <p class="queue-extras" id="queue-extras">
+    <strong>Plus <span id="queue-count">0</span></strong> ticked from the next-round queue. Manage the full list on the Competitor Queue tab &mdash; add new competitors, tick which ones to include in this round.
+  </p>
+
+  <p><a href="competitor.html" class="btn btn-ghost">Manage competitor list &rarr;</a></p>
+</section>
+
+<!-- ============================================================
+     Stage 2 — start scan
+     ============================================================ -->
+<section class="stage" id="stage-2">
+  <div class="stage-header">
+    <span class="stage-num">Stage 2</span>
+    <h2>Start scan</h2>
+    <span class="sub">Pull live ad creative from each competitor</span>
+  </div>
+
+  <div class="scan-launcher">
+    <div class="scan-meta">
+      <h4>Run the Meta Ad Library scan</h4>
+      <p>Opens the Meta Ad Library in a new tab for each selected competitor, filtered to active ads only. Parm reviews creative, fills in the territory map below.</p>
+      <div class="last-scan" id="last-scan-line">Last run: never</div>
+    </div>
+    <button class="btn btn-primary" id="btn-start-scan">Start scan &rarr;</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     Stage 3 — scan findings (territory map)
+     ============================================================ -->
+<section class="stage" id="stage-3">
+  <div class="stage-header">
+    <span class="stage-num">Stage 3</span>
+    <h2>Scan findings</h2>
+    <span class="sub">Territory claimed by competitors &middot; territory open for us</span>
+  </div>
+
+  <div class="territory">
+    <div class="col claimed">
+      <h4>Claimed by competitors <span class="count">5</span></h4>
+      <ul>
+        <li>
+          <strong>Sound packs &amp; collab</strong>
+          <span>Splice owns this hard. Influencer + producer-collab content. Don&rsquo;t fight here.</span>
+        </li>
+        <li>
+          <strong>AI mastering</strong>
+          <span>LANDR is synonymous with it. Their ads lean &ldquo;upload &amp; we master&rdquo; convenience.</span>
+        </li>
+        <li>
+          <strong>Cinematic / TV scoring</strong>
+          <span>Output dominates the cinematic instrument category with Arcade and Substance.</span>
+        </li>
+        <li>
+          <strong>&ldquo;Try it free&rdquo; trial CTA</strong>
+          <span>All three competitors lead with a trial offer; it&rsquo;s the standard CTA, not a differentiator.</span>
+        </li>
+        <li>
+          <strong>Generic creator testimonials</strong>
+          <span>Lots of unnamed-creator quotes. None reference specific records or credits.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col open">
+      <h4>Territory open for us <span class="count">4</span></h4>
+      <ul>
+        <li>
+          <strong>Pro-grade plugin credibility &mdash; A</strong>
+          <span>None of the three claim &ldquo;the actual tools pros use on records.&rdquo; Specificity wins here.</span>
+        </li>
+        <li>
+          <strong>Outright vs subscription comparison &mdash; B</strong>
+          <span>Nobody is showing the outright vs sub price math. Komplete is ~$1,599 outright; framing 360 against that price anchor is wide open.</span>
+        </li>
+        <li>
+          <strong>Named producer + verified credits &mdash; C</strong>
+          <span>Generic creator quotes are everywhere; verified credits are not. Trustpilot rating + named producer is a clean differentiator.</span>
+        </li>
+        <li>
+          <strong>&ldquo;All future updates included&rdquo; framing</strong>
+          <span>Bench angle &mdash; LANDR mentions updates weakly; nobody leads with it. Holds for Round 2.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout dim" style="margin-top:16px;">
+    Findings here are seeded from Round 1&rsquo;s scan. Parm updates this list after each round&rsquo;s scan; canonical version lives in the tracker&rsquo;s <strong>Decision Log</strong> tab.
+  </div>
+</section>
+
+<!-- ============================================================
+     Stage 4 — approach briefs
+     ============================================================ -->
+<section class="stage" id="stage-4">
+  <div class="stage-header">
+    <span class="stage-num">Stage 4</span>
+    <h2>Approach briefs</h2>
+    <span class="sub">Three live, one bench &mdash; each attacks one open territory</span>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <h3>A &mdash; Pro toolkit stack</h3>
+      <p><strong>Attacks:</strong> pro-grade plugin credibility</p>
+      <p><strong>Angle:</strong> show the actual tools (Kontakt, Massive X, Ozone) that pros use on records. Credibility via specificity.</p>
+      <p><strong>Headline draft:</strong> &ldquo;The tools on the records you love.&rdquo;</p>
+      <p><span class="pill pill-live">Live</span></p>
+    </div>
+    <div class="card">
+      <h3>B &mdash; Price anchor</h3>
+      <p><strong>Attacks:</strong> outright vs subscription comparison</p>
+      <p><strong>Angle:</strong> compare outright Komplete (~$1,599) vs $12.50 a month, with &ldquo;all future updates included&rdquo; defusing the perpetual-vs-sub objection.</p>
+      <p><strong>Headline draft:</strong> &ldquo;Buy outright. Or by the month.&rdquo;</p>
+      <p><span class="pill pill-live">Live</span></p>
+    </div>
+    <div class="card">
+      <h3>C &mdash; Named producer credibility</h3>
+      <p><strong>Attacks:</strong> pro credits vs generic testimonials</p>
+      <p><strong>Angle:</strong> verbatim quote from a named, credited producer. Quote + credits + plugin pills. Star rating from a verifiable source.</p>
+      <p><strong>Headline draft:</strong> the quote IS the headline.</p>
+      <p><span class="pill pill-live">Live</span></p>
+    </div>
+    <div class="card" style="opacity:0.7">
+      <h3>Bench &mdash; Updates included</h3>
+      <p><strong>Attacks:</strong> &ldquo;all future updates included&rdquo; framing (LANDR claims it weakly)</p>
+      <p><strong>Status:</strong> bench. Promotes into the first open slot when an approach retires.</p>
+      <p><span class="pill pill-bench">Bench</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Stage 5 — template previews + status
+     ============================================================ -->
+<section class="stage" id="stage-5">
+  <div class="stage-header">
+    <span class="stage-num">Stage 5</span>
+    <h2>Template previews</h2>
+    <span class="sub">What ships if briefs are approved</span>
+  </div>
+
+  <p style="margin-bottom: 24px; color: var(--text-muted); font-size: 14px;">
+    Each preview renders the actual HTML template at all three aspect ratios. Set a status per preview &mdash; status decides whether Stage 6 (Launch) is unlocked. Edit copy or swap images via the linked Sheet.
+  </p>
+
+  <div class="template-preview-block" data-approach="A">
+    <h3>A &mdash; Pro toolkit stack</h3>
+    <div class="preview-status-row">
+      <span class="label">Status:</span>
+      <button class="status-pill pending"    data-status="pending">Pending review</button>
+      <button class="status-pill revisions"  data-status="revisions">Revisions required</button>
+      <button class="status-pill ready"      data-status="ready">Ready to launch</button>
+      <span class="preview-edit-link">
+        <a href="#" data-drive-slot="copy-doc-a" target="_blank" rel="noopener">Edit copy &amp; images &rarr;</a>
+      </span>
+    </div>
+    <iframe class="template-preview" src="templates/approach_A_pro_toolkit.html" title="Approach A preview" loading="lazy"></iframe>
+  </div>
+
+  <div class="template-preview-block" data-approach="B">
+    <h3>B &mdash; Price anchor</h3>
+    <div class="preview-status-row">
+      <span class="label">Status:</span>
+      <button class="status-pill pending"    data-status="pending">Pending review</button>
+      <button class="status-pill revisions"  data-status="revisions">Revisions required</button>
+      <button class="status-pill ready"      data-status="ready">Ready to launch</button>
+      <span class="preview-edit-link">
+        <a href="#" data-drive-slot="copy-doc-b" target="_blank" rel="noopener">Edit copy &amp; images &rarr;</a>
+      </span>
+    </div>
+    <iframe class="template-preview" src="templates/approach_B_price_anchor.html" title="Approach B preview" loading="lazy"></iframe>
+  </div>
+
+  <div class="template-preview-block" data-approach="C">
+    <h3>C &mdash; Named producer credibility</h3>
+    <div class="preview-status-row">
+      <span class="label">Status:</span>
+      <button class="status-pill pending"    data-status="pending">Pending review</button>
+      <button class="status-pill revisions"  data-status="revisions">Revisions required</button>
+      <button class="status-pill ready"      data-status="ready">Ready to launch</button>
+      <span class="preview-edit-link">
+        <a href="#" data-drive-slot="copy-doc-c" target="_blank" rel="noopener">Edit copy &amp; images &rarr;</a>
+      </span>
+    </div>
+    <iframe class="template-preview" src="templates/approach_C_pro_quote.html" title="Approach C preview" loading="lazy"></iframe>
+  </div>
+
+  <div class="callout dim">
+    Status is saved locally in your browser. Source of truth for round-level decisions stays in the tracker&rsquo;s Decision Log tab. Drive links above need URLs &mdash; <strong>Jordan</strong> to paste them in (grep <code>data-drive-slot</code>).
+  </div>
+</section>
+
+<!-- ============================================================
+     Stage 6 — launch ads
+     ============================================================ -->
+<section class="stage" id="stage-6">
+  <div class="stage-header">
+    <span class="stage-num">Stage 6</span>
+    <h2>Launch ads</h2>
+    <span class="sub">Final checklist before Leo traffics</span>
+  </div>
+
+  <div class="launch-summary">
+    <p class="gate-line"><strong id="ready-count">0</strong> of 3 templates marked Ready to launch.</p>
+    <p class="gate-detail">All three approaches must be Ready (or you must consciously decide to launch with fewer) before Leo traffics. Round 1 wants three live for the gate-2 graduate call to be meaningful.</p>
+  </div>
+
+  <ul class="launch-checklist" id="launch-checklist">
+    <li>
+      <input type="checkbox" data-check="assets">
+      <div class="item-content">
+        <strong>Asset tracker is green</strong>
+        <em>Every approach has 4:5, 1:1, and 9:16 exported. Leo verifies in Meta Ads Manager before trafficking.</em>
+      </div>
+    </li>
+    <li>
+      <input type="checkbox" data-check="legal">
+      <div class="item-content">
+        <strong>Legal sign-off filed</strong>
+        <em>Approach B prices verified. &ldquo;All future updates included&rdquo; approved. UGC consent on file for Approach C.</em>
+      </div>
+    </li>
+    <li>
+      <input type="checkbox" data-check="primary-text">
+      <div class="item-content">
+        <strong>Meta primary text approved</strong>
+        <em>Per-approach <code>CONFIG.description</code> reviewed against the NI style guide.</em>
+      </div>
+    </li>
+    <li>
+      <input type="checkbox" data-check="audience">
+      <div class="item-content">
+        <strong>Audience built in Ads Manager</strong>
+        <em>Broad-trial-acquisition audience configured. Naming follows <code>NI_NI360_R1_*</code> convention.</em>
+      </div>
+    </li>
+    <li>
+      <input type="checkbox" data-check="tracking">
+      <div class="item-content">
+        <strong>Tracker dashboards point to the new ads</strong>
+        <em>Ad Tests tab populated with the three approaches. Bayesian gate flags ready to fire.</em>
+      </div>
+    </li>
+  </ul>
+
+  <button class="launch-go" id="launch-btn" disabled>Mark round live</button>
+  <div class="launch-confirm" id="launch-confirm">Round 1 marked live. Tracker now owns the round &mdash; head over there for live numbers and gate-readiness.</div>
+
+  <p style="margin-top: 32px; font-size: 14px; color: var(--text-muted);">
+    Once live, Round 1 numbers populate in the tracker. When Gate 2 fires, Parm calls graduates and retires losers. <a href="results.html">View Results history &rarr;</a>
+  </p>
+</section>
+
+</main>
+
+<footer class="site">
+  NI 360 Static Ad Framework &middot; <a href="index.html">Home</a> &middot; <a href="https://docs.google.com/spreadsheets/d/1p_AmG7aTjeJiSifNN6ovVn6mrYgyHlk9WPwjsRECyRQ/edit" target="_blank" rel="noopener">Open tracker &#x2197;</a>
+</footer>
+
+<script>
+(function(){
+  // ─────────────────────────────────────────────────────────
+  //  localStorage keys
+  // ─────────────────────────────────────────────────────────
+  const QUEUE_KEY    = 'ni360-queue-v1';                 // shared with competitor.html
+  const STATUS_KEY   = 'ni360-template-status-v1';
+  const CHECKLIST_KEY = 'ni360-launch-checklist-v1';
+  const SCAN_KEY     = 'ni360-last-scan-v1';
+  const LIVE_KEY     = 'ni360-round-live-v1';
+
+  // Default competitors (always part of the scan)
+  const DEFAULTS = [
+    { id: 'splice', name: 'Splice', q: 'splice' },
+    { id: 'landr',  name: 'LANDR',  q: 'landr' },
+    { id: 'output', name: 'Output', q: 'output' },
+  ];
+
+  function read(key, fallback) {
+    try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+    catch (_) { return fallback; }
+  }
+  function write(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) {}
+  }
+
+  // ─────────────────────────────────────────────────────────
+  //  Stage 1 — queue summary
+  // ─────────────────────────────────────────────────────────
+  function renderQueueCount() {
+    const queue = read(QUEUE_KEY, []);
+    const extras = queue.filter(id => !DEFAULTS.some(d => d.id === id));
+    const el = document.getElementById('queue-count');
+    if (el) el.textContent = extras.length;
+  }
+
+  // ─────────────────────────────────────────────────────────
+  //  Stage 2 — start scan
+  // ─────────────────────────────────────────────────────────
+  function renderLastScan() {
+    const ts = read(SCAN_KEY, null);
+    const el = document.getElementById('last-scan-line');
+    if (!el) return;
+    el.textContent = ts
+      ? 'Last run: ' + new Date(ts).toLocaleString()
+      : 'Last run: never';
+  }
+
+  function startScan() {
+    const queue = read(QUEUE_KEY, []);
+    // Default 3 + any added from queue
+    const list = [...DEFAULTS];
+    queue.forEach(id => {
+      if (!list.some(c => c.id === id)) {
+        list.push({ id: id, name: id, q: id });
+      }
+    });
+    if (!list.length) {
+      alert('No competitors selected. Add some on the Competitor Queue tab.');
+      return;
+    }
+    const ok = confirm(`Open ${list.length} Meta Ad Library tabs (one per competitor)?`);
+    if (!ok) return;
+    list.forEach(c => {
+      const url = 'https://www.facebook.com/ads/library/'
+        + '?active_status=active'
+        + '&ad_type=all'
+        + '&country=ALL'
+        + '&q=' + encodeURIComponent(c.q || c.name)
+        + '&search_type=keyword_unordered'
+        + '&media_type=all';
+      window.open(url, '_blank', 'noopener');
+    });
+    write(SCAN_KEY, Date.now());
+    renderLastScan();
+  }
+
+  document.getElementById('btn-start-scan')?.addEventListener('click', startScan);
+
+  // ─────────────────────────────────────────────────────────
+  //  Stage 5 — preview status pills
+  // ─────────────────────────────────────────────────────────
+  function renderStatuses() {
+    const map = read(STATUS_KEY, {});
+    document.querySelectorAll('.template-preview-block').forEach(block => {
+      const a = block.getAttribute('data-approach');
+      const cur = map[a] || null;
+      block.querySelectorAll('.status-pill').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-status') === cur);
+      });
+    });
+    renderReadyCount();
+    renderLaunchEnabled();
+  }
+
+  function setStatus(approach, status) {
+    const map = read(STATUS_KEY, {});
+    map[approach] = status;
+    write(STATUS_KEY, map);
+    renderStatuses();
+  }
+
+  document.querySelectorAll('.template-preview-block').forEach(block => {
+    block.querySelectorAll('.status-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const a = block.getAttribute('data-approach');
+        const s = btn.getAttribute('data-status');
+        const map = read(STATUS_KEY, {});
+        // toggle off if clicking the same status
+        setStatus(a, map[a] === s ? null : s);
+      });
+    });
+  });
+
+  function renderReadyCount() {
+    const map = read(STATUS_KEY, {});
+    const ready = ['A','B','C'].filter(a => map[a] === 'ready').length;
+    const el = document.getElementById('ready-count');
+    if (el) el.textContent = ready;
+  }
+
+  // ─────────────────────────────────────────────────────────
+  //  Stage 6 — launch checklist
+  // ─────────────────────────────────────────────────────────
+  function renderChecklist() {
+    const map = read(CHECKLIST_KEY, {});
+    document.querySelectorAll('.launch-checklist input[type="checkbox"]').forEach(cb => {
+      cb.checked = !!map[cb.getAttribute('data-check')];
+    });
+    renderLaunchEnabled();
+  }
+
+  document.querySelectorAll('.launch-checklist input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const map = read(CHECKLIST_KEY, {});
+      map[cb.getAttribute('data-check')] = cb.checked;
+      write(CHECKLIST_KEY, map);
+      renderLaunchEnabled();
+    });
+  });
+
+  function renderLaunchEnabled() {
+    const status  = read(STATUS_KEY, {});
+    const checks  = read(CHECKLIST_KEY, {});
+    const allReady = ['A','B','C'].every(a => status[a] === 'ready');
+    const allChecked = ['assets','legal','primary-text','audience','tracking'].every(k => checks[k]);
+    const btn = document.getElementById('launch-btn');
+    if (btn) btn.disabled = !(allReady && allChecked);
+  }
+
+  document.getElementById('launch-btn')?.addEventListener('click', () => {
+    write(LIVE_KEY, Date.now());
+    document.getElementById('launch-confirm')?.classList.add('shown');
+  });
+
+  // initial render
+  renderQueueCount();
+  renderLastScan();
+  renderStatuses();
+  renderChecklist();
+})();
+</script>
+
+</body>
+</html>

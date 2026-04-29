@@ -489,6 +489,345 @@ td code { font-size: 0.82em; }
 /* Competitor row tick cell */
 .tick-cell { width: 210px; text-align: right; }
 
+/* ============================================================
+   Round runner — six-stage workflow
+   ============================================================ */
+
+/* "New" badge on the nav link */
+.nav-new {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--accent);
+  padding: 2px 5px;
+  border-radius: 3px;
+  vertical-align: 1px;
+}
+
+/* Sticky stage strip — quick jump between stages */
+.stage-strip {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(14, 15, 18, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  margin: 0 -24px 32px;
+  padding: 12px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+}
+.stage-strip a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm, 6px);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.stage-strip a:hover { color: var(--text); border-color: var(--border); }
+.stage-strip a .num {
+  display: inline-block;
+  width: 18px; height: 18px;
+  line-height: 18px; text-align: center;
+  font-size: 10px; font-weight: 700;
+  background: var(--surface, #1a1d23);
+  color: var(--text);
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+/* Stage block */
+.stage {
+  margin: 56px 0;
+  scroll-margin-top: 80px;
+}
+.stage-header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.stage-num {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.stage-header h2 { margin: 0; font-size: 24px; }
+.stage-header .sub {
+  margin-left: auto;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* Stage 1 — competitor cards */
+.competitor-set {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.competitor-tile {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm, 8px);
+  padding: 18px 20px;
+}
+.competitor-tile h4 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+.competitor-tile .meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0 0 8px;
+}
+.competitor-tile .gap {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+.queue-extras {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 8px 0 16px;
+}
+.queue-extras strong { color: var(--text); }
+
+/* Stage 2 — scan launcher */
+.scan-launcher {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm, 8px);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.scan-launcher .scan-meta {
+  flex: 1;
+  min-width: 240px;
+}
+.scan-launcher .scan-meta h4 { margin: 0 0 4px; font-size: 16px; }
+.scan-launcher .scan-meta p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.scan-launcher .last-scan {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  margin-top: 8px;
+}
+
+/* Stage 3 — territory map */
+.territory {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.territory .col {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm, 8px);
+  padding: 20px;
+}
+.territory .col.claimed { border-left: 3px solid var(--text-dim); }
+.territory .col.open    { border-left: 3px solid var(--accent); }
+.territory .col h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+.territory .col h4 .count {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 10px;
+  background: var(--surface, #1a1d23);
+  padding: 1px 6px;
+  border-radius: 999px;
+  color: var(--text);
+}
+.territory ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.territory li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.territory li:last-child { border-bottom: none; }
+.territory li strong { color: var(--text); display: block; margin-bottom: 2px; }
+.territory li span { color: var(--text-muted); font-size: 13px; }
+@media (max-width: 760px) { .territory { grid-template-columns: 1fr; } }
+
+/* Stage 5 — preview status pills */
+.preview-status-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 12px 0 8px;
+}
+.preview-status-row .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-right: 4px;
+}
+.status-pill {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font: 500 12px var(--font, inherit);
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 120ms, color 120ms, background 120ms;
+}
+.status-pill:hover { color: var(--text); border-color: var(--text-muted); }
+.status-pill.active.pending {
+  background: rgba(245, 166, 35, 0.12);
+  color: #f5a623;
+  border-color: #f5a623;
+}
+.status-pill.active.revisions {
+  background: rgba(220, 80, 80, 0.12);
+  color: #e36464;
+  border-color: #e36464;
+}
+.status-pill.active.ready {
+  background: rgba(76, 175, 80, 0.14);
+  color: #5fc46a;
+  border-color: #5fc46a;
+}
+.preview-edit-link {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.preview-edit-link a { color: var(--accent); font-weight: 500; }
+
+/* Stage 6 — launch */
+.launch-summary {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm, 8px);
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+.launch-summary .gate-line {
+  font-size: 14px;
+  color: var(--text);
+  margin: 0 0 6px;
+}
+.launch-summary .gate-line strong { color: var(--accent); }
+.launch-summary .gate-detail {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+}
+.launch-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
+.launch-checklist li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+.launch-checklist li:last-child { border-bottom: none; }
+.launch-checklist input[type="checkbox"] {
+  appearance: none;
+  width: 18px; height: 18px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 1px 0 0;
+  flex-shrink: 0;
+  cursor: pointer;
+  position: relative;
+  background: transparent;
+}
+.launch-checklist input[type="checkbox"]:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.launch-checklist input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--bg);
+  font-weight: 700;
+}
+.launch-checklist .item-content { flex: 1; }
+.launch-checklist .item-content strong { display: block; }
+.launch-checklist .item-content em {
+  display: block;
+  font-style: normal;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.launch-go {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm, 8px);
+  font: 600 15px var(--font, inherit);
+  cursor: pointer;
+  margin-top: 8px;
+}
+.launch-go:disabled {
+  background: var(--surface, #1a1d23);
+  color: var(--text-dim);
+  cursor: not-allowed;
+}
+.launch-confirm {
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.4);
+  border-radius: var(--radius-sm, 8px);
+  color: #5fc46a;
+  font-size: 13px;
+  display: none;
+}
+.launch-confirm.shown { display: block; }
+
+@media (max-width: 760px) {
+  .competitor-set { grid-template-columns: 1fr; }
+  .stage-strip { font-size: 12px; }
+  .stage-strip a { padding: 6px 8px; }
+}
+
 /* Footer */
 footer.site {
   border-top: 1px solid var(--border);
